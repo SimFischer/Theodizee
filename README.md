@@ -26,8 +26,13 @@ Stellungnahme im Anforderungsbereich III.
 ## Vor dem ersten Einsatz
 
 1. **Karikatur ablegen.** Lernschritt 1 erwartet die Datei
-   `assets/bilder/karikatur.jpg`. Fehlt sie, erscheint dort ein Hinweiskasten.
-   Siehe `assets/bilder/HIER_BILDER_ABLEGEN.md`.
+   `assets/bilder/karikatur.jpg` („Schreckensbilanz“). Fehlt sie, erscheint
+   dort ein Hinweiskasten. Siehe `assets/bilder/HIER_BILDER_ABLEGEN.md`.
+   Die Reserve-Grafik „Naturkatastrophen“ liegt bereits als
+   `assets/bilder/naturkatastrophen.jpg` bei; sie steckt in einem
+   zugeklappten Impuls, den die Schülerinnen und Schüler erst öffnen, wenn sie
+   bei der Beschreibung oder Deutung nicht weiterkommen — so nimmt sie die
+   eigene Deutung nicht vorweg.
 2. **Film prüfen.** Lernschritt 6 verlinkt den Film über das Erdbeben von
    Lissabon (youtube-nocookie, öffnet in einem neuen Tab). Die Adresse steht in
    `assets/js/seiten.js` beim Feld `link`.

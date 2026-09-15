@@ -27,6 +27,13 @@ window.SEITEN = [
     alt: "Karikatur zum Einstieg",
     unterschrift: "Karikatur „Schreckensbilanz“"
   },
+  bildImpuls: {
+    titel: "Impuls: Woran könnte man noch denken?",
+    hinweis: "Öffne das erst, wenn du bei Aufgabe 1 oder 2 nicht weiterkommst.",
+    datei: "assets/bilder/naturkatastrophen.jpg",
+    alt: "Übersicht: Erdbeben, Tsunami, Vulkanausbruch, Dürre, Waldbrand, Lawine, Überschwemmung, Hurrikan, Tornado, Erdrutsch, Meteoriteneinschlag, nukleare Explosion, chemische Kontamination",
+    unterschrift: "Ereignisse, die Leid verursachen – von Naturereignissen bis zu menschengemachten Katastrophen."
+  },
   aufgaben: [
     { id: "k1", typ: "text",
       frage: "Beschreibe, was du auf der Karikatur siehst.",

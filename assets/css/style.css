@@ -366,6 +366,7 @@ label.feld > span{ display:block; margin-bottom:.25rem; font-weight:600; color:v
 .bild-karte.fehlt figcaption{ display:none; }
 .bild-karte.fehlt .bild-fehlt{ display:block; }
 .bild-karte.fehlt{ border-style:dashed; background:var(--papier); }
+.bild-impuls .bild-karte{ margin:0; border:none; box-shadow:none; padding:0; background:none; }
 
 .kuerzel-hinweis{
   margin:.6rem 0 0; padding:.5rem .7rem;

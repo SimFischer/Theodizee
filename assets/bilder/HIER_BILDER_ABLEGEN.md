@@ -2,9 +2,10 @@
 
 Lege hier deine eigenen Bilddateien ab. Die Anwendung erwartet:
 
-| Datei | Verwendung |
-|---|---|
-| `karikatur.jpg` | Karikatur „Schreckensbilanz" im Einstieg (Lernschritt 1) |
+| Datei | Verwendung | Status |
+|---|---|---|
+| `karikatur.jpg` | Karikatur „Schreckensbilanz" im Einstieg (Lernschritt 1) | **fehlt noch** |
+| `naturkatastrophen.jpg` | Reserve-Impuls im Einstieg, aufklappbar | liegt bereit |
 
 Solange eine Datei fehlt, zeigt die Seite an dieser Stelle einen gestrichelten
 Kasten mit einem Hinweis statt eines kaputten Bildes — so siehst du sofort,

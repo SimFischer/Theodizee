@@ -381,6 +381,16 @@
       "</figure>";
   }
 
+  /* Zusaetzliches Bild, das erst auf Klick erscheint - ein Impuls, der die
+     eigene Deutung nicht vorwegnimmt. */
+  function bildImpulsHtml(b) {
+    return '<details class="schreibhilfe bild-impuls"><summary>' +
+      esc(b.titel || "Impuls ansehen") + "</summary>" +
+      '<div class="schreibhilfe-inhalt">' +
+      (b.hinweis ? '<p class="zusatz">' + esc(b.hinweis) + "</p>" : "") +
+      bildHtml(b) + "</div></details>";
+  }
+
   /* Weiterfuehrender Link, oeffnet in einem neuen Tab. */
   function linkHtml(l) {
     return '<section class="karte"><h2>' + esc(l.titel || "Zum Ansehen") + "</h2>" +
@@ -403,6 +413,7 @@
          (s.lead ? '<p class="lead">' + esc(s.lead) + "</p>" : "") + "</div>";
 
     if (s.bild) h += bildHtml(s.bild);
+    if (s.bildImpuls) h += bildImpulsHtml(s.bildImpuls);
     if (s.link) h += linkHtml(s.link);
     if (s.start) h += startInhalt();
     if (s.hilfe) h += '<div class="meldung info"><h3>Hilfe</h3>' + esc(s.hilfe) + "</div>";
