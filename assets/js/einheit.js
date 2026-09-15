@@ -1,47 +1,27 @@
 /* =====================================================================
-   EINHEIT  —  zentrale Einstellungen dieser Lerneinheit
-   ---------------------------------------------------------------------
-   Das ist die erste Datei, die du für eine neue Einheit anpasst.
-   Alles Weitere steckt in:
-     assets/js/quelle.js            – der Quellentext
-     assets/js/seiten.js            – die Lernschritte und Aufgaben
-     assets/js/tafelbild_inhalt.js  – das interaktive Schaubild (optional)
-     assets/js/supabase_config.js   – Zugang zur Datenbank
-
-   WICHTIG — "id" und "speicherSchluessel":
-   Mehrere Einheiten unter derselben GitHub-Pages-Adresse teilen sich den
-   lokalen Speicher des Browsers. Vergib deshalb für JEDE Einheit eigene,
-   unverwechselbare Werte, sonst überschreiben sich die Arbeitsstände
-   deiner Schülerinnen und Schüler gegenseitig.
+   EINHEIT  —  Theodizee: Leibniz und Voltaire
    ===================================================================== */
 window.EINHEIT = {
 
-  /* Kennung der Einheit in der Datenbank. Kleinschreibung, keine Leerzeichen.
-     Die Lehrkräfteansicht zeigt nur Abgaben mit genau dieser Kennung. */
-  id: "beispiel",
+  id: "theodizee",
+  speicherSchluessel: "theodizee-leibniz-voltaire.v1",
 
-  /* Eigener Schlüssel für die lokale Speicherung auf dem Schülergerät. */
-  speicherSchluessel: "lerneinheit-beispiel.v1",
+  titel:       "Theodizee: Leibniz und Voltaire",
+  untertitel:  "Wie lässt sich das Leid in der Welt mit Gott zusammendenken?",
+  kopfMarke:   "Theodizee",
+  kopfZusatz:  "Leibniz und Voltaire – Religion",
 
-  /* Überschriften */
-  titel:       "Freiheit und Regeln",
-  untertitel:  "Eine Beispieleinheit zum Anpassen",
-  kopfMarke:   "Freiheit und Regeln",
-  kopfZusatz:  "Beispieleinheit – Sekundarstufe",
-
-  /* Einleitung auf der Startseite */
   startHinweise: [
-    "Lies zuerst den Quellenabschnitt, dann bearbeite die Aufgaben darunter.",
+    "Lies zuerst den Textabschnitt oben, dann bearbeite die Aufgaben darunter.",
     "Der Text bleibt oben sichtbar und lässt sich ein- und ausklappen.",
     "Du kannst im Text markieren: Stelle auswählen, dann eine der vier Farben antippen.",
-    "Dein Stand wird automatisch auf diesem Gerät gespeichert."
+    "Dein Stand wird automatisch auf diesem Gerät gespeichert.",
+    "Die Debatte am Ende führt ihr mündlich – die Anwendung hilft bei Vorbereitung und Auswertung."
   ],
 
-  /* Aufgaben-Ids, deren Antworten zusätzlich in der Spalte "recherche"
-     gesichert werden sollen. Leer lassen, wenn du das nicht brauchst. */
-  rechercheAufgaben: [],
+  /* Antworten, die zusätzlich in der Spalte "recherche" gesichert werden */
+  rechercheAufgaben: ["d1", "d2", "d3", "d4"],
 
-  /* Aufgaben-Id, deren Antwort zusätzlich in der Spalte "urteil" landet.
-     null, wenn du das nicht brauchst. */
-  urteilAufgabe: null
+  /* Antwort, die zusätzlich in der Spalte "urteil" landet */
+  urteilAufgabe: "e2"
 };

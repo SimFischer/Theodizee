@@ -1,55 +1,50 @@
 /* =====================================================================
-   TAFELBILD  —  Inhalt des interaktiven Schaubilds
-   ---------------------------------------------------------------------
-   Wird diese Datei leer gelassen (aktiv: false), entfällt der Lernschritt
-   mit dem Tafelbild; lösche dann auch die Seite mit "tafel: true" aus
-   seiten.js.
-
-   felder    – die Ablageflächen. "klasse" bestimmt den Platz im Raster.
-               Verfügbar sind: s-oben, s-links, s-rechts, s-linksbox,
-               s-mitte, s-rechtsbox, s-linksunten, s-rechtsunten, s-unten,
-               s-breit1, s-breit2. Zusätzlich möglich: "betont" (hervorgehoben)
-               und "kasten" (mit Rahmen). Nicht belegte Plätze bleiben frei.
-   bausteine – die Kärtchen. "feld" ist das richtige Ziel; "feld: null"
-               macht den Baustein zum Ablenker, der nirgends hingehört.
-   linien    – Verbindungen zwischen Feldern (fein: dünn, pfeil: mit Spitze).
+   TAFELBILD  —  Leibniz und Voltaire gegenübergestellt
    ===================================================================== */
 window.TAFEL_INHALT = {
   aktiv: true,
 
   felder: [
-    { id: "oben",     klasse: "s-oben betont" },
-    { id: "links",    klasse: "s-links" },
-    { id: "rechts",   klasse: "s-rechts" },
-    { id: "linksbox", klasse: "s-linksbox kasten" },
-    { id: "mitte",    klasse: "s-mitte" },
-    { id: "rechtsbox",klasse: "s-rechtsbox kasten" }
+    { id: "frage",    klasse: "s-oben betont" },
+    { id: "leibniz",  klasse: "s-links" },
+    { id: "voltaire", klasse: "s-rechts" },
+    { id: "lbox",     klasse: "s-linksbox kasten" },
+    { id: "anlass",   klasse: "s-mitte" },
+    { id: "vbox",     klasse: "s-rechtsbox kasten" },
+    { id: "lgrund",   klasse: "s-linksunten" },
+    { id: "vgrund",   klasse: "s-rechtsunten" },
+    { id: "streit",   klasse: "s-breit1" }
   ],
 
   bausteine: [
-    { id: "b1", text: "Regeln",                                  feld: "oben" },
-    { id: "b2", text: "äußere Regeln",                           feld: "links" },
-    { id: "b3", text: "innere Regeln",                           feld: "rechts" },
-    { id: "b4", text: "ziehen Grenzen, sind erzwingbar",         feld: "linksbox" },
-    { id: "b5", text: "eröffnen Spielräume, brauchen Einsicht",  feld: "rechtsbox" },
-    { id: "b6", text: "beide ermöglichen Zusammenleben",         feld: "mitte" },
-    { id: "x1", text: "Regeln sind immer Einschränkungen",       feld: null },
-    { id: "x2", text: "Überzeugungen lassen sich befehlen",      feld: null }
+    { id: "b1", text: "Theodizeefrage: Warum lässt ein guter Gott das Leid zu?", feld: "frage" },
+    { id: "b2", text: "Leibniz",  feld: "leibniz" },
+    { id: "b3", text: "Voltaire", feld: "voltaire" },
+    { id: "b4", text: "Die beste aller möglichen Welten", feld: "lbox" },
+    { id: "b5", text: "Leid ist sinnlos", feld: "vbox" },
+    { id: "b6", text: "Erdbeben von Lissabon 1755", feld: "anlass" },
+    { id: "b7", text: "Unser Blick auf das Ganze ist zu begrenzt", feld: "lgrund" },
+    { id: "b8", text: "Eine Deutung des Leids verhöhnt die Opfer", feld: "vgrund" },
+    { id: "b9", text: "Streitpunkt: Hat das Leid einen höheren Sinn?", feld: "streit" },
+    { id: "x1", text: "Gott straft die Ungläubigen", feld: null },
+    { id: "x2", text: "Voltaire setzt eine neue Erklärung an die Stelle der alten", feld: null },
+    { id: "x3", text: "Leibniz hält die Welt für vollkommen", feld: null }
   ],
 
   linien: [
-    { von: "oben",     nach: "links",     pfeil: true },
-    { von: "oben",     nach: "rechts",    pfeil: true },
-    { von: "links",    nach: "linksbox",  fein: true },
-    { von: "rechts",   nach: "rechtsbox", fein: true },
-    { von: "linksbox", nach: "mitte",     fein: true },
-    { von: "mitte",    nach: "rechtsbox", fein: true }
+    { von: "frage",   nach: "leibniz",  pfeil: true },
+    { von: "frage",   nach: "voltaire", pfeil: true },
+    { von: "leibniz", nach: "lbox",     fein: true },
+    { von: "voltaire",nach: "vbox",     fein: true },
+    { von: "lbox",    nach: "lgrund",   fein: true },
+    { von: "vbox",    nach: "vgrund",   fein: true },
+    { von: "anlass",  nach: "vbox",     pfeil: true },
+    { von: "anlass",  nach: "lbox",     pfeil: true }
   ],
 
-  /* Rückmeldungen. Die Platzhalter {anzahl} und {feld} werden ersetzt. */
   hinweise: {
-    leer:     "Es {ist_sind} noch {anzahl} {feld} leer. Beginne oben mit dem Oberbegriff.",
-    ablenker: "Mindestens ein eingeordneter Baustein widerspricht dem Text. Prüfe, welche Aussagen der Text gerade nicht vertritt.",
-    falsch:   "Die Zuordnung stimmt noch nicht überall. Lies den Abschnitt zu den beiden Arten von Regeln erneut."
+    leer:     "Es {ist_sind} noch {anzahl} {feld} leer. Beginne oben mit der Leitfrage und ordne dann die beiden Positionen zu.",
+    ablenker: "Mindestens ein eingeordneter Baustein steht so in keinem der beiden Texte. Prüfe, was Leibniz und Voltaire tatsächlich behaupten – und was nicht.",
+    falsch:   "Die Zuordnung stimmt noch nicht überall. Achte darauf, welche Begründung zu welcher Position gehört."
   }
 };

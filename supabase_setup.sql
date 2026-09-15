@@ -39,7 +39,7 @@ create table if not exists public.abgaben (
   id              uuid primary key default gen_random_uuid(),
   erstellt_am     timestamptz not null default now(),
   art             text not null default 'abgabe',
-  einheit         text not null default 'standard',
+  einheit         text not null default 'theodizee',
   vorname         text not null,
   nachname        text not null,
   kurs            text not null,
