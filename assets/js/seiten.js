@@ -2,7 +2,7 @@
    SEITEN  —  Theodizee: Leibniz und Voltaire
    Aufbau nach dem Stundenraster vom 05.05.2025:
    Einstieg – Erarbeitung I – Sicherung I – Gelenk – Erarbeitung II –
-   Sicherung II – Vertiefung (Theodizee-Prozess) – Abgabe
+   Sicherung II – Vertiefung (Gottesbild) – Abgabe
    ---------------------------------------------------------------------
    Anspruchsniveau: Oberstufe (Q2). Reine Textsuche (AFB I) ist nur dort
    vorgesehen, wo sie eine anschliessende Deutung vorbereitet; der
@@ -362,7 +362,7 @@ window.SEITEN = [
 
     { id: "v3b", typ: "text",
       frage: "Notiere Voltaires Argumente gegen Leibniz in eigenen Worten und gib zu jedem an, ob es Leibniz’ These als falsch oder als unzumutbar angreift.",
-      zusatz: "Mindestens drei Argumente, jeweils mit Belegstelle – du brauchst sie gleich im Prozess.",
+      zusatz: "Mindestens drei Argumente, jeweils mit Belegstelle – du brauchst sie in Lernschritt 12 wieder.",
       minLen: 300,
       zeilen: 8,
       platzhalter: "1. Argument – Beleg – greift an als: falsch / unzumutbar\n2. …\n3. …",
@@ -400,67 +400,83 @@ window.SEITEN = [
 
 /* ---------------------------------------------------------------- 12 */
 {
-  id: "prozess1", kurz: "12", kapitel: "Lernschritt 12",
-  titel: "Der Theodizee-Prozess: Vorbereitung",
-  lead: "Vor Gericht steht nicht Gott, sondern ein Satz: „Das Leid in der Welt ist Teil einer göttlichen Ordnung und hat letztlich einen höheren Sinn.“ In Vierergruppen verhandelt ihr diesen Satz – mit Anklage, Verteidigung, einer Zeugin oder einem Zeugen aus Lissabon und einem Gericht, das am Ende ein begründetes Urteil sprechen muss. Bereite hier deine Rolle vor.",
+  id: "gottesbild", kurz: "12", kapitel: "Lernschritt 12",
+  titel: "Das Gottesbild auf dem Prüfstand",
+  lead: "Leibniz und Voltaire streiten nicht nur über das Leid, sondern über Gott. Denn die Theodizeefrage entsteht erst, wenn man drei Sätze gleichzeitig für wahr hält: Gott ist allmächtig. Gott ist gut. Und es gibt sinnloses Leid. Alle drei zusammen lassen sich nicht widerspruchsfrei denken – wer an der Frage arbeitet, muss also an einem der drei Sätze etwas verändern. Welcher es ist, entscheidet darüber, welches Bild von Gott am Ende übrig bleibt.",
   abschnitt: null,
-  hilfe: "Verfahrensablauf: 1. Verlesung des angeklagten Satzes durch das Gericht. 2. Eröffnungsplädoyer der Anklage (3 Min). 3. Eröffnungsplädoyer der Verteidigung (3 Min). 4. Beweisaufnahme: Befragung der Zeugin oder des Zeugen durch beide Seiten, freie Rede (12 Min). 5. Schlussplädoyers (je 1 Min, keine neuen Argumente). 6. Urteilsverkündung mit Begründung (3 Min). Belegt eure Behauptungen am Text – ein Plädoyer ohne Beleg ist vor diesem Gericht unzulässig. Das Gericht darf jederzeit nachfragen und muss sein Urteil ausdrücklich begründen; ein Freispruch „aus Mangel an Beweisen“ ist zulässig, muss dann aber erklärt werden.",
+  hilfe: "Das Trilemma in Kurzform: (1) Gott ist allmächtig – er könnte das Leid verhindern. (2) Gott ist gut – er wollte das Leid verhindern. (3) Es gibt Leid, das keinen erkennbaren Sinn hat. Hält man alle drei Sätze zugleich fest, widersprechen sie einander. Leibniz greift Satz 3 an: Das Leid sieht nur für uns sinnlos aus. Voltaire hält Satz 3 fest und lässt die Frage nach Gott offen. Es gibt weitere Wege – und jeder hat seinen Preis.",
   aufgaben: [
-    { id: "p1", typ: "mc",
-      frage: "Welche Rolle übernimmst du im Verfahren?",
-      zusatz: "Deine Lehrkraft teilt die Rollen zu. Du vertrittst deine Rolle, auch wenn du persönlich anders denkst – genau das ist der Sinn der Übung.",
-      optionen: [
-        "Anklage: Ich klage den Satz an, das Leid habe einen höheren Sinn – er verhöhnt die Opfer und macht jede Verbesserung der Welt sinnlos (Position Voltaires).",
-        "Verteidigung: Ich verteidige den Satz – nur Gott überschaut den ganzen Zusammenhang, und diese Welt ist mitsamt ihrem Leid die beste aller möglichen (Position Leibniz’).",
-        "Zeugin/Zeuge: Ich überlebte den 1. November 1755 in Lissabon und sage aus, was ich gesehen habe und was die Deutungen mit mir machen.",
-        "Gericht: Ich leite die Verhandlung, frage beide Seiten kritisch und spreche am Ende ein begründetes Urteil."
+    { id: "p1", typ: "zuordnung",
+      frage: "Jede Antwort auf die Theodizeefrage gibt einen der drei Sätze preis oder schwächt ihn ab. Ordne die folgenden Antworten zu.",
+      zusatz: "Frage bei jeder Antwort: Was wird hier über Gott – oder über das Leid – nicht mehr behauptet?",
+      koerbe: [
+        { id: "a", label: "schwächt Gottes Allmacht ab" },
+        { id: "b", label: "schwächt Gottes Güte ab" },
+        { id: "c", label: "bestreitet, dass das Leid sinnlos ist" }
       ],
-      loesung: null,
-      freieWahl: true,
-      hinweis: "Wähle die Rolle, die dir zugeteilt wurde." },
+      items: [
+        { id: "t1", text: "Gott leidet mit den Menschen, kann das Leid aber nicht verhindern", korb: "a" },
+        { id: "t2", text: "Gott hat sich zurückgenommen, damit der Mensch wirklich frei sein kann", korb: "a" },
+        { id: "t3", text: "Das Erdbeben war eine Strafe für die Sünden der Stadt", korb: "b" },
+        { id: "t4", text: "Gott hat die Welt geschaffen und überlässt sie seither sich selbst", korb: "b" },
+        { id: "t5", text: "Was uns als Übel erscheint, gehört zu einer Ordnung, die wir nicht überblicken", korb: "c" },
+        { id: "t6", text: "Leid ist der notwendige Preis dafür, dass Menschen frei handeln können", korb: "c" }
+      ],
+      hinweisLeer: "Es liegen noch Antworten im Vorrat.",
+      hinweisFalsch: "Eine Zuordnung passt noch nicht. Prüfe: Wird hier Gottes Können eingeschränkt, sein Wollen – oder wird das Leid umgedeutet?" },
 
-    { id: "p2", typ: "text",
-      frage: "Formuliere den Kern deines Auftritts in höchstens drei Sätzen: Anklage und Verteidigung ihren Antrag samt Hauptbegründung, die Zeugin bzw. der Zeuge den Kern ihrer Aussage, das Gericht die Frage, an der sich die Sache entscheiden wird.",
-      zusatz: "Ein Satz, der alles Wichtige sagt, ist schwerer als eine Seite. Streiche, bis nichts Entbehrliches mehr dasteht.",
-      minLen: 200,
-      zeilen: 5,
-      hinweisLeer: "Dein Kernsatz fehlt noch oder ist zu knapp." },
+    { id: "p2", typ: "aussagen",
+      frage: "Prüfe, was die beiden Positionen über Gott voraussetzen.",
+      zusatz: "Begründe jede Einordnung. Es geht jetzt nicht mehr um das Leid allein, sondern um das Gottesbild, das dahintersteht.",
+      kategorien: ["trifft zu", "muss präzisiert werden", "trifft nicht zu"],
+      items: [
+        { id: "p2a", text: "Leibniz rettet Gottes Güte, indem er bestreitet, dass das Leid sinnlos ist.",
+          loesung: 0, begruendung: true,
+          rueck: "Genau das ist sein Zug: Güte und Allmacht bleiben unangetastet, dafür ist das Leid nur scheinbar sinnlos – wir überblicken das Ganze nicht." },
+        { id: "p2b", text: "Voltaire bestreitet, dass es Gott gibt.",
+          loesung: 2, begruendung: true,
+          rueck: "Er bestreitet nicht Gott, sondern eine bestimmte Rede von ihm. Sein Zitat fragt, wie man sich einen Gott denken soll, der die Güte selbst ist und doch Übel über seine Geschöpfe gießt – das ist eine Frage an das Gottesbild, keine Leugnung." },
+        { id: "p2c", text: "Wer sagt, Gott greife bewusst nicht ein, damit der Mensch frei bleibt, hat die Theodizeefrage gelöst.",
+          loesung: 1, begruendung: true,
+          rueck: "Für das moralische Übel trägt dieser Gedanke. Das Erdbeben von Lissabon hat aber niemand verschuldet – für das physische Übel bleibt die Frage offen." },
+        { id: "p2d", text: "Ein Gott, der mitleidet, aber nicht helfen kann, ist kein Gott mehr.",
+          loesung: 1, begruendung: true,
+          rueck: "Das hängt daran, was „Gott“ heißen soll. Wer die Allmacht zur Grundbedingung macht, muss zustimmen; wer Gott von der Liebe her denkt, kann widersprechen. Genau hier scheiden sich die Gottesbilder." }
+      ],
+      hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
+      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
 
-    { id: "p3", typ: "text",
-      frage: "Trage drei Belege aus den Texten zusammen, auf die du dich im Verfahren stützt.",
-      zusatz: "Zu jedem Beleg: Wortlaut oder genaue Angabe der Stelle – und in einem Satz, was er für deine Rolle beweist. Das Gericht wird nachfragen.",
-      minLen: 320,
-      zeilen: 8,
-      platzhalter: "1. Beleg (Stelle/Wortlaut) – beweist:\n2. Beleg – beweist:\n3. Beleg – beweist:",
-      hinweisLeer: "Deine Belege fehlen noch oder sind zu knapp. Drei belegte Punkte sind das Ziel." },
+    { id: "p3", typ: "position",
+      frage: "An welchem der drei Sätze würdest du am ehesten etwas verändern?",
+      zusatz: "Wähle und begründe. Sage dabei ausdrücklich, welches Bild von Gott übrig bleibt, wenn du dich so entscheidest – und welchen Preis du dafür zahlst.",
+      optionen: [
+        "an der Allmacht: Gott kann das Leid nicht verhindern",
+        "an der Güte: Gott will das Leid nicht in jedem Fall verhindern",
+        "an der Sinnlosigkeit: das Leid hat einen Sinn, den wir nicht sehen"
+      ],
+      minLen: 300,
+      hinweisWahl: "Wähle zuerst eine der drei Möglichkeiten.",
+      hinweisText: "Deine Begründung fehlt noch oder ist zu knapp. Es fehlt entweder die Begründung deiner Wahl oder das Gottesbild, das daraus folgt." },
 
     { id: "p4", typ: "text",
-      frage: "Was ist der stärkste Einwand gegen deine Rolle – und wie gehst du damit um?",
-      zusatz: "Nimm den stärksten Einwand, nicht den schwächsten. Wer die Gegenseite ernst nimmt, überzeugt eher. Das Gericht notiert hier, welchen Einwand es für den schwersten hält und was es hören müsste, um ihn zu entkräften.",
-      minLen: 250,
-      zeilen: 6,
-      hinweisLeer: "Deine Antwort fehlt noch oder ist zu knapp." },
-
-    { id: "p5", typ: "text",
-      frage: "Formuliere zwei Fragen, die du in der Beweisaufnahme stellen willst – und an wen.",
-      zusatz: "Gute Fragen sind offen, aber nicht beliebig: Sie zwingen die Gegenseite, einen Punkt zu klären, den sie lieber offenließe.",
-      minLen: 180,
-      zeilen: 5,
-      platzhalter: "Frage 1 an …:\nFrage 2 an …:",
-      hinweisLeer: "Deine Fragen fehlen noch oder sind zu knapp." }
+      frage: "Trifft Voltaires Kritik den Glauben an Gott – oder nur ein bestimmtes Bild von Gott? Beurteile das begründet.",
+      zusatz: "Der letzte Textabschnitt hilft: Voltaires Kritik trifft sich mit einer theologischen Kritik am Optimismus, weil der Glaube von einer erlösungsbedürftigen Welt ausgeht. Was folgt daraus für die Reichweite seiner Kritik?",
+      minLen: 300,
+      zeilen: 7,
+      hinweisLeer: "Deine Beurteilung fehlt noch oder ist zu knapp. Entscheide dich begründet und belege am Text." }
   ]
 },
 
 /* ---------------------------------------------------------------- 13 */
 {
-  id: "prozess2", kurz: "13", kapitel: "Lernschritt 13",
-  titel: "Nach dem Prozess",
-  lead: "Das Verfahren ist geschlossen. Jetzt legst du die Rolle ab und sprichst wieder für dich selbst.",
+  id: "ertrag", kurz: "13", kapitel: "Lernschritt 13",
+  titel: "Ertrag und eigene Stellungnahme",
+  lead: "Du hast beide Positionen geprüft und gesehen, woran sich die Gottesbilder scheiden. Jetzt sprichst du mit eigener Stimme.",
   abschnitt: null,
   aufgaben: [
     { id: "e1", typ: "text",
-      frage: "Halte den Ertrag des Verfahrens fest: Welches Argument der Gegenseite hat dich am meisten beschäftigt – und was hat es an deiner eigenen Sicht verschoben?",
-      zusatz: "Auch „nichts verschoben“ ist eine Antwort, wenn du begründest, warum das Argument dich nicht erreicht hat.",
+      frage: "Halte den Ertrag fest: Welcher Gedanke aus dieser Stunde hat dich am meisten beschäftigt – und was hat er an deiner eigenen Sicht verschoben?",
+      zusatz: "Auch „nichts verschoben“ ist eine Antwort, wenn du begründest, warum der Gedanke dich nicht erreicht hat.",
       minLen: 220,
       zeilen: 6,
       hinweisLeer: "Deine Antwort fehlt noch oder ist zu knapp." },
@@ -491,7 +507,7 @@ window.SEITEN = [
             "Argumente für Voltaires Position – und wo sie tragen.",
             "Unterscheide durchgehend zwei Fragen: Ist eine Deutung des Leids in sich schlüssig? Und: Ist sie gegenüber Betroffenen vertretbar?",
             "Prüfe den schwierigsten Punkt: Wem gegenüber wird eine Deutung des Leids ausgesprochen? Macht es einen Unterschied, ob ein Betroffener sie für sich selbst findet oder ob ein Dritter sie ihm zuspricht?",
-            "Beziehe den Ertrag des Verfahrens ein: Welcher Einwand hat sich als der stärkste erwiesen?"
+            "Beziehe dein Ergebnis aus Lernschritt 12 ein: An welchem der drei Sätze – Allmacht, Güte, Sinnlosigkeit des Leids – hältst du fest, und welches Gottesbild folgt daraus?"
           ] },
         { titel: "Schluss",
           zusatz: "Keine neuen Argumente mehr – aber eine klare Position.",
@@ -507,7 +523,7 @@ window.SEITEN = [
         "Leibniz denkt die beste Welt dynamisch, als Entwicklung. Verändert das die Stoßrichtung von Voltaires Kritik?",
         "Wenn das Leid keinen Sinn hat: Was folgt daraus für den Umgang mit Leidenden?",
         "Gibt es eine dritte Möglichkeit zwischen Deuten und Aushalten?",
-        "Das Gericht konnte den Satz nur annehmen oder verwerfen. Gibt es Sätze, über die sich gar nicht abstimmen lässt?"
+        "Muss ein Gott, an den man sich in der Not wendet, allmächtig sein – oder genügt es, dass er mitgeht?"
       ],
       hinweisLeer: "Deine Stellungnahme fehlt noch oder ist zu knapp. Arbeite Einleitung, Hauptteil und Schluss aus und beziehe beide Positionen ein." }
   ]

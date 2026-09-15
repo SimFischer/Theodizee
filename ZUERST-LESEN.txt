@@ -1,18 +1,19 @@
 Hochladen bei GitHub
 ====================
 
-Diese fünf Dateien ersetzen die gleichnamigen Dateien im Repository
-SimFischer/Theodizee. Die Ordnerstruktur muss dabei erhalten bleiben:
+Diese sechs Dateien ersetzen die gleichnamigen Dateien im Repository
+SimFischer/Theodizee. Die Ordnerstruktur muss erhalten bleiben:
 
   index.html
   lehrer.html
   README.md
   assets/js/seiten.js
   assets/js/einheit.js
+  assets/js/quelle.js
 
 So geht es im Browser:
 
-1. github.com/SimFischer/Theodizee öffnen.
+1. github.com/SimFischer/Theodizee oeffnen.
 2. Oben auf "Add file" > "Upload files" klicken.
 3. Den INHALT dieses Ordners in das Feld ziehen - also die beiden
    HTML-Dateien, die README und den Ordner "assets" markieren und
@@ -22,9 +23,8 @@ So geht es im Browser:
 4. GitHub zeigt an, dass bestehende Dateien ersetzt werden - das ist so
    gewollt.
 5. Unten eine kurze Commit-Nachricht eintragen, z. B.
-   "Aufgaben auf Oberstufenniveau, Theodizee-Prozess statt Debatte".
+   "Aufgaben auf Oberstufenniveau, Gottesbild statt Debatte".
 6. "Commit changes" klicken.
 
-Danach die Seite einmal mit Strg+F5 (iPad: Seite neu laden) aufrufen.
 Die ?v=-Nummern in index.html und lehrer.html sind bereits erhoeht, die
 iPads holen sich die neuen Dateien also von selbst.

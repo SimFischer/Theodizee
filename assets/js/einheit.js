@@ -19,11 +19,11 @@ window.EINHEIT = {
     "Der Text bleibt oben sichtbar und lässt sich ein- und ausklappen.",
     "Du kannst im Text markieren: Stelle auswählen, dann eine der vier Farben antippen.",
     "Dein Stand wird automatisch auf diesem Gerät gespeichert.",
-    "Den Theodizee-Prozess am Ende führt ihr in Vierergruppen mündlich – die Anwendung hilft bei Vorbereitung und Auswertung."
+    "Die ganze Stunde läuft in dieser Anwendung – von der Karikatur bis zur eigenen Stellungnahme."
   ],
 
   /* Antworten, die zusätzlich in der Spalte "recherche" gesichert werden */
-  rechercheAufgaben: ["p1", "p2", "p3", "p4", "p5"],
+  rechercheAufgaben: ["p1", "p2", "p3", "p4"],
 
   /* Antwort, die zusätzlich in der Spalte "urteil" landet */
   urteilAufgabe: "e2"

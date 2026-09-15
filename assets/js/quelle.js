@@ -14,7 +14,7 @@ window.QUELLE = {
   aufgabenImOriginal: [
     "Fasse die Aussagen Leibniz’ zur Theodizeefrage zusammen.",
     "Fasse die Aussagen Voltaires zusammen und notiere seine Argumente gegen Leibniz.",
-    "Nimm in der Debatte begründet Stellung zu der These: „Leid ist Teil einer göttlichen Ordnung und hat letztlich einen höheren Sinn.“"
+    "Nimm begründet Stellung zu der These: „Leid ist Teil einer göttlichen Ordnung und hat letztlich einen höheren Sinn.“"
   ],
 
   sections: {

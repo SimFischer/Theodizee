@@ -15,18 +15,18 @@ Abgaben liegen in einem Supabase-Projekt.
 | Erarbeitung II (AB Voltaire) | 7, 8, 9 – Kontext, Zitate, Argumente gegen Leibniz |
 | Sicherung II (Assoziation) | 10 – „GERECHT“ aus Voltaires Sicht |
 | — | 11 – Schaubild: beide Positionen im Überblick |
-| Vertiefung (Theodizee-Prozess) | 12 – Rollenvorbereitung, 13 – Ertrag und eigene Stellungnahme |
+| Vertiefung (Gottesbild) | 12 – Theodizee-Trilemma, 13 – Ertrag und eigene Stellungnahme |
 | | 14 – Abgabe |
 
-Die Vertiefung ist ein **Theodizee-Prozess**: Angeklagt ist nicht Gott,
-sondern der Satz „Das Leid in der Welt ist Teil einer göttlichen Ordnung und
-hat letztlich einen höheren Sinn.“ In Vierergruppen verhandeln Anklage
-(Position Voltaires), Verteidigung (Position Leibniz’), eine Zeugin oder ein
-Zeuge aus Lissabon und ein Gericht, das ein begründetes Urteil sprechen muss.
-Der Verfahrensablauf steht als Hilfe in Lernschritt 12; dort bereitet jede und
-jeder die eigene Rolle vor (Antrag, Belege, stärkster Einwand, Fragen für die
-Beweisaufnahme). Lernschritt 13 legt die Rolle wieder ab und mündet in eine
-begründete eigene Stellungnahme im Anforderungsbereich III.
+Die Stunde läuft vollständig in der Anwendung; es ist keine mündliche Phase
+und keine Gruppenarbeit nötig. Die Vertiefung führt vom Leid zum
+**Gottesbild**: Lernschritt 12 entfaltet das Theodizee-Trilemma (Gott ist
+allmächtig – Gott ist gut – es gibt sinnloses Leid). Die Schülerinnen und
+Schüler ordnen gängige Antworten danach, welchen der drei Sätze sie preisgeben,
+prüfen, was Leibniz und Voltaire über Gott voraussetzen, entscheiden sich
+begründet für einen Weg und benennen das Gottesbild, das daraus folgt.
+Lernschritt 13 sichert den Ertrag und mündet in die begründete eigene
+Stellungnahme im Anforderungsbereich III.
 
 Die Aufgaben liegen durchgehend im Anforderungsbereich II und III: statt
 Multiple-Choice stehen Zuordnungen, die Prüfung von Aussagen mit
