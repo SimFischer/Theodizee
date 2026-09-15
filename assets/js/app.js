@@ -83,8 +83,10 @@
     var f = [], v = ant(a.id), i;
 
     if (a.typ === "mc") {
+      /* freieWahl: Auswahl ohne richtige Loesung, z. B. eine zugewiesene Rolle.
+         Dann genuegt es, dass ueberhaupt etwas gewaehlt wurde. */
       if (v === undefined || v === null) f.push("„" + kurzFrage(a) + "“ ist noch nicht beantwortet.");
-      else if (v !== a.loesung) f.push(a.hinweis);
+      else if (!a.freieWahl && v !== a.loesung) f.push(a.hinweis);
     }
 
     else if (a.typ === "multi") {
@@ -122,6 +124,24 @@
       var offen = a.items.filter(function (it) { return !v[it.id]; });
       if (offen.length) f.push(a.hinweisLeer);
       else if (a.items.some(function (it) { return v[it.id] !== it.korb; })) f.push(a.hinweisFalsch);
+    }
+
+    else if (a.typ === "akrostichon") {
+      v = v || {};
+      var offenA = [], falscheA = [];
+      a.wort.split("").forEach(function (bu, idx) {
+        var wert = ((v[idx] || "") + "").trim();
+        if (wert.length < (a.minLen || 3)) offenA.push(bu);
+        else if (wert.toLowerCase().indexOf(bu.toLowerCase()) < 0) falscheA.push(bu);
+      });
+      if (offenA.length) {
+        f.push(a.hinweisLeer || "Zu " + offenA.length +
+          (offenA.length === 1 ? " Buchstaben fehlt noch ein Begriff." : " Buchstaben fehlen noch Begriffe."));
+      }
+      if (falscheA.length) {
+        f.push(a.hinweisBuchstabe || "Bei „" + falscheA.join("“, „") +
+          "“ kommt der Buchstabe im Begriff noch nicht vor.");
+      }
     }
 
     else if (a.typ === "aussagen") {
@@ -309,6 +329,18 @@
       }).join("") + "</div>";
     }
 
+    else if (a.typ === "akrostichon") {
+      v = v || {};
+      h += (a.wortHinweis
+        ? '<p class="zusatz">' + esc(a.wortHinweis) + "</p>" : "") +
+        '<div class="akrostichon">' + a.wort.split("").map(function (bu, idx) {
+          return '<div class="akro-zeile"><span class="akro-buchstabe">' + esc(bu) + "</span>" +
+            '<input type="text" data-typ="akrostichon" data-ziel="' + a.id + '" data-index="' + idx +
+            '" autocomplete="off" value="' + esc(v[idx] || "") +
+            '" aria-label="Begriff mit dem Buchstaben ' + esc(bu) + '"></div>';
+        }).join("") + "</div>";
+    }
+
     else if (a.typ === "aussagen") {
       v = v || {};
       h += a.items.map(function (it) {
@@ -337,6 +369,27 @@
     return h;
   }
 
+  /* Bild einer Seite. Fehlt die Datei, erscheint ein Hinweis statt eines
+     kaputten Bildes - so faellt beim Einrichten sofort auf, was fehlt. */
+  function bildHtml(b) {
+    return '<figure class="bild-karte">' +
+      '<img src="' + esc(b.datei) + '" alt="' + esc(b.alt || "") + '"' +
+      " onerror=\"this.closest('figure').classList.add('fehlt')\">" +
+      '<figcaption>' + esc(b.unterschrift || "") + "</figcaption>" +
+      '<p class="bild-fehlt zusatz">Hier fehlt noch die Bilddatei <code>' + esc(b.datei) +
+      "</code>. Lege sie im Repository an dieser Stelle ab.</p>" +
+      "</figure>";
+  }
+
+  /* Weiterfuehrender Link, oeffnet in einem neuen Tab. */
+  function linkHtml(l) {
+    return '<section class="karte"><h2>' + esc(l.titel || "Zum Ansehen") + "</h2>" +
+      (l.hinweis ? '<p class="zusatz">' + esc(l.hinweis) + "</p>" : "") +
+      '<div class="knopfzeile" style="margin-top:.4rem">' +
+      '<a class="knopf" href="' + esc(l.url) + '" target="_blank" rel="noopener noreferrer">' +
+      esc(l.text || "Öffnen") + "</a></div></section>";
+  }
+
   /* ---------------- Seitenaufbau ---------------- */
   function zeichneSeite(i) {
     aktiveSeite = i;
@@ -349,6 +402,8 @@
          "<h1>" + esc(s.titel) + "</h1>" +
          (s.lead ? '<p class="lead">' + esc(s.lead) + "</p>" : "") + "</div>";
 
+    if (s.bild) h += bildHtml(s.bild);
+    if (s.link) h += linkHtml(s.link);
     if (s.start) h += startInhalt();
     if (s.hilfe) h += '<div class="meldung info"><h3>Hilfe</h3>' + esc(s.hilfe) + "</div>";
     if (s.tafel) h += '<div id="tafelZiel"></div>';
@@ -653,6 +708,12 @@
       var ziel = el.dataset ? el.dataset.ziel : null;
       if (!ziel) return;
       var typ = el.dataset.typ;
+      if (typ === "akrostichon") {
+        var av = ant(ziel) || {};
+        av[el.dataset.index] = el.value;
+        setAnt(ziel, av);
+        return;
+      }
       if (typ === "text") { setAnt(ziel, el.value); zaehlerAn(ziel, el.value); }
       else if (typ === "position-text") { var p = ant(ziel) || {}; p.text = el.value; setAnt(ziel, p); zaehlerAn(ziel, el.value); }
       else if (typ === "auswahl-eigen") { var a = ant(ziel) || {}; a.thema = el.value.trim(); setAnt(ziel, a); }

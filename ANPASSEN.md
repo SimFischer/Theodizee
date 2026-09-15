@@ -54,6 +54,34 @@ kommentiertes Beispiel in der Datei:
 | `auswahl` | Thema aus einer Liste wählen, eigenes möglich |
 | `zuordnung` | Begriffe in Körbe einordnen |
 | `aussagen` | Aussagen bewerten, teils mit Begründung |
+| `akrostichon` | zu jedem Buchstaben eines Wortes einen Begriff notieren |
+
+Bei `mc` macht `freieWahl: true` aus der Aufgabe eine Auswahl ohne richtige
+Lösung — etwa für eine zugewiesene Rolle oder Position. Dann genügt es, dass
+überhaupt etwas gewählt wurde, und in der Auswertung erscheint kein ✓ oder ✗.
+
+Beim `akrostichon` gibst du das Wort an (`wort: "GERECHT"`). Geprüft wird, ob
+jeder Eintrag mindestens `minLen` Zeichen hat und den geforderten Buchstaben
+enthält — an beliebiger Stelle, nicht nur am Anfang.
+
+### Bild und Link auf einer Seite
+
+Neben `aufgaben` kann eine Seite auch ein Bild und einen weiterführenden Link
+tragen:
+
+```js
+bild: { datei: "assets/bilder/karikatur.jpg",
+        alt: "Kurze Beschreibung für Screenreader",
+        unterschrift: "Bildunterschrift mit Quellenangabe" },
+link: { titel: "Film zum Thema", text: "Film ansehen",
+        hinweis: "Öffnet sich in einem neuen Tab.",
+        url: "https://www.youtube-nocookie.com/watch?v=..." }
+```
+
+Fehlt die Bilddatei, erscheint ein gestrichelter Kasten mit Hinweis statt eines
+kaputten Bildes. Lege nur Bilder ab, die du verwenden darfst — die Seite ist
+über GitHub Pages öffentlich erreichbar, die Schrankenregelung für den
+Unterrichtsgebrauch (§ 60a UrhG) trägt hier unter Umständen nicht.
 
 Eine Seite mit `tafel: true` zeigt statt Aufgaben das Schaubild. Die letzte
 Seite trägt `abgabe: true`; davon gibt es genau eine.

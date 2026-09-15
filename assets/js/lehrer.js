@@ -48,7 +48,10 @@
 
   /* Bewertet eine einzelne Aufgabe: true, false oder null (nicht prüfbar) */
   function bewerte(a, wert) {
-    if (a.typ === "mc") return wert === undefined || wert === null ? false : wert === a.loesung;
+    if (a.typ === "mc") {
+      if (a.freieWahl) return null;           /* Auswahl ohne richtige Loesung */
+      return wert === undefined || wert === null ? false : wert === a.loesung;
+    }
     if (a.typ === "multi") {
       if (!Array.isArray(wert)) return false;
       return a.loesung.slice().sort().join(",") === wert.slice().sort().join(",");
@@ -97,6 +100,11 @@
         } else if (auf.typ === "auswahl") {
           sp.push({ kopf: auf.id + " Thema", hole: function (a) {
             return ((a.antworten || {})[auf.id] || {}).thema || ""; } });
+        } else if (auf.typ === "akrostichon") {
+          auf.wort.split("").forEach(function (bu, idx) {
+            sp.push({ kopf: auf.id + " " + bu + (idx + 1), hole: function (a) {
+              return ((a.antworten || {})[auf.id] || {})[idx] || ""; } });
+          });
         } else if (auf.typ === "aussagen") {
           auf.items.filter(function (it) { return it.begruendung; }).forEach(function (it) {
             sp.push({ kopf: it.id + " Begründung", hole: function (a) {
@@ -451,6 +459,7 @@
 
     if (a.typ === "mc") {
       if (v === undefined || v === null) return kasten("");
+      if (a.freieWahl) return kasten(a.optionen[v]);
       h = esc(a.optionen[v]) + (v === a.loesung ? "  ✓" : "  ✗");
       return kasten(h);
     }
@@ -473,6 +482,14 @@
           return "  • " + it.text + (it.korb === k.id ? " ✓" : " ✗");
         }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
+    }
+    if (a.typ === "akrostichon") {
+      v = v || {};
+      return '<div class="antwort">' + a.wort.split("").map(function (bu, idx) {
+        var wert = (v[idx] || "").trim();
+        var passt = wert && wert.toLowerCase().indexOf(bu.toLowerCase()) >= 0;
+        return bu + ": " + (wert || "— keine Angabe —") + (wert ? (passt ? " ✓" : " ✗") : "");
+      }).join("\n") + "</div>";
     }
     if (a.typ === "aussagen") {
       v = v || {};

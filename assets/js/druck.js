@@ -43,6 +43,12 @@
           (drin.length ? drin.map(function (it) { return "  • " + it.text; }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
     }
+    if (a.typ === "akrostichon") {
+      v = v || {};
+      return '<div class="antwort">' + a.wort.split("").map(function (bu, idx) {
+        return bu + ": " + ((v[idx] || "").trim() || "— keine Angabe —");
+      }).join("\n") + "</div>";
+    }
     if (a.typ === "aussagen") {
       v = v || {};
       return a.items.map(function (it) {

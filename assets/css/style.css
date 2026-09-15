@@ -344,6 +344,29 @@ label.feld > span{ display:block; margin-bottom:.25rem; font-weight:600; color:v
 .tabelle th,.tabelle td{ text-align:left; padding:.35rem .5rem; border-bottom:1px solid var(--linie-fein); vertical-align:top; }
 
 
+/* ---------- Akrostichon ---------- */
+.akrostichon{ display:grid; gap:.45rem; margin-top:.4rem; }
+.akro-zeile{ display:flex; align-items:center; gap:.7rem; }
+.akro-buchstabe{
+  flex:none; width:2.1rem; text-align:center;
+  font-family:var(--serif); font-size:1.5rem; font-weight:700; color:var(--blau-tief);
+}
+.akro-zeile input{ flex:1; }
+
+/* ---------- Bild einer Seite ---------- */
+.bild-karte{
+  margin:0 0 1.1rem; padding:clamp(.6rem,2vw,.9rem);
+  background:var(--karte); border:1px solid var(--linie); border-radius:var(--r);
+  box-shadow:var(--schatten);
+}
+.bild-karte img{ display:block; width:100%; height:auto; border-radius:var(--r-s); }
+.bild-karte figcaption{ margin-top:.5rem; font-size:.86rem; color:var(--tinte-weich); }
+.bild-karte .bild-fehlt{ display:none; margin:0; }
+.bild-karte.fehlt img,
+.bild-karte.fehlt figcaption{ display:none; }
+.bild-karte.fehlt .bild-fehlt{ display:block; }
+.bild-karte.fehlt{ border-style:dashed; background:var(--papier); }
+
 .kuerzel-hinweis{
   margin:.6rem 0 0; padding:.5rem .7rem;
   background:var(--blau-zart); border-radius:var(--r-s);
