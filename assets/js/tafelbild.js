@@ -3,48 +3,12 @@
 (function () {
   "use strict";
 
-  var FELDER = [
-    { id: "mensch",    klasse: "s-mensch betont" },
-    { id: "welt",      klasse: "s-welt" },
-    { id: "christ",    klasse: "s-christ" },
-    { id: "wreg",      klasse: "s-wreg kasten" },
-    { id: "dienst",    klasse: "s-dienst" },
-    { id: "greg",      klasse: "s-greg kasten" },
-    { id: "gesetze",   klasse: "s-gesetze" },
-    { id: "liebe",     klasse: "s-liebe" },
-    { id: "regierung", klasse: "s-regierung" },
-    { id: "glaube",    klasse: "s-glaube" },
-    { id: "wider",     klasse: "s-wider" }
-  ];
-
-  var BAUSTEINE = [
-    { id: "b1",  text: "(Christen-)Mensch",                                     feld: "mensch" },
-    { id: "b2",  text: "Weltperson",                                            feld: "welt" },
-    { id: "b3",  text: "Christperson",                                          feld: "christ" },
-    { id: "b4",  text: "Weltliches Regiment",                                   feld: "wreg" },
-    { id: "b5",  text: "Geistliches Regiment",                                  feld: "greg" },
-    { id: "b6",  text: "beide stehen im Dienste des Reiches Gottes",            feld: "dienst" },
-    { id: "b7",  text: "Die Politik benötigt Gesetze",                          feld: "gesetze" },
-    { id: "b8",  text: "Im Reich Gottes herrschen Liebe und Friede",            feld: "liebe" },
-    { id: "b9",  text: "Die Regierung darf sich nicht in Glaubensfragen einmischen", feld: "regierung" },
-    { id: "b10", text: "Glaube bewährt sich im politischen Engagement, muss sich aber aus Sachfragen heraushalten", feld: "glaube" },
-    { id: "b11", text: "ABER: Wenn die Regierung ihre Aufgabe nicht wahrnimmt, ist Widerstand nötig.", feld: "wider" },
-    { id: "x1",  text: "Die Obrigkeit verkündigt das Evangelium",               feld: null },
-    { id: "x2",  text: "Christen sind von den weltlichen Gesetzen befreit",     feld: null }
-  ];
-
-  var LINIEN = [
-    { von: "mensch",  nach: "welt",      pfeil: true  },
-    { von: "mensch",  nach: "christ",    pfeil: true  },
-    { von: "welt",    nach: "wreg",      fein: true   },
-    { von: "christ",  nach: "greg",      fein: true   },
-    { von: "wreg",    nach: "dienst",    fein: true   },
-    { von: "dienst",  nach: "greg",      fein: true   },
-    { von: "gesetze", nach: "regierung", fein: true   },
-    { von: "regierung", nach: "liebe",   pfeil: true  },
-    { von: "glaube",  nach: "gesetze",   pfeil: true  },
-    { von: "liebe",   nach: "glaube",    fein: true   }
-  ];
+  /* Inhalt kommt aus tafelbild_inhalt.js */
+  var INHALT  = window.TAFEL_INHALT || {};
+  var FELDER    = INHALT.felder    || [];
+  var BAUSTEINE = INHALT.bausteine || [];
+  var LINIEN    = INHALT.linien    || [];
+  var HINWEISE  = INHALT.hinweise  || {};
 
   function baustein(bid) {
     for (var i = 0; i < BAUSTEINE.length; i++) if (BAUSTEINE[i].id === bid) return BAUSTEINE[i];
@@ -232,38 +196,36 @@
 
   /* Prüfung mit gestuften Hinweisen – ohne Lösungsverrat */
   function pruefen(state) {
+    if (!FELDER.length) return [];
     var t = state.tafelbild || {};
+
     var leer = FELDER.filter(function (f) { return !t[f.id]; });
     if (leer.length) {
-      return ["Es " + (leer.length === 1 ? "ist noch 1 Feld" : "sind noch " + leer.length + " Felder") +
-              " leer. Beginne oben mit der Person und überlege, welche zwei Perspektiven auf denselben Menschen der Text unterscheidet."];
+      var vorlage = HINWEISE.leer ||
+        "Es {ist_sind} noch {anzahl} {feld} leer.";
+      return [vorlage
+        .replace("{ist_sind}", leer.length === 1 ? "ist" : "sind")
+        .replace("{anzahl}", leer.length)
+        .replace("{feld}", leer.length === 1 ? "Feld" : "Felder")];
     }
+
     var fehler = [];
-    var ablenker = FELDER.filter(function (f) { var b = baustein(t[f.id]); return b && !b.feld; });
-    if (ablenker.length) {
-      fehler.push("Mindestens ein eingeordneter Baustein widerspricht dem Text. Prüfe, welche Aussagen Luther gerade nicht vertritt.");
-    }
-    var falschOben = ["mensch", "welt", "christ", "wreg", "greg"].filter(function (id) {
-      var b = baustein(t[id]); return !b || b.feld !== id;
+    var ablenker = FELDER.filter(function (f) {
+      var b = baustein(t[f.id]);
+      return b && !b.feld;
     });
-    if (falschOben.length) {
-      fehler.push("Der obere Teil stimmt noch nicht. Lies den Abschnitt zur Christperson und Weltperson erneut: Welche Perspektive gehört zu welchem Regiment?");
+    if (ablenker.length) {
+      fehler.push(HINWEISE.ablenker ||
+        "Mindestens ein eingeordneter Baustein gehört nicht ins Bild.");
     }
-    if (baustein(t.dienst) && baustein(t.dienst).feld !== "dienst") {
-      fehler.push("Der Baustein zwischen den beiden Regimenten benennt das Gemeinsame. Lies den Satz, der die Beschreibung der beiden Regimente einleitet, erneut.");
-    }
-    if ((baustein(t.gesetze) && baustein(t.gesetze).feld !== "gesetze") ||
-        (baustein(t.liebe) && baustein(t.liebe).feld !== "liebe")) {
-      fehler.push("Prüfe noch einmal, mit welchen Mitteln die beiden Regimente jeweils wirken.");
-    }
-    if ((baustein(t.regierung) && baustein(t.regierung).feld !== "regierung") ||
-        (baustein(t.glaube) && baustein(t.glaube).feld !== "glaube") ||
-        (baustein(t.wider) && baustein(t.wider).feld !== "wider")) {
-      fehler.push("Die drei unteren Aussagen sind noch nicht in der richtigen Reihenfolge. Achte darauf, welche Aussage die Grenze der Obrigkeit beschreibt, welche das Verhältnis von Glaube und Sachfragen und welche den Ausnahmefall.");
-    }
-    if (!fehler.length) {
-      var falsch = FELDER.filter(function (f) { var b = baustein(t[f.id]); return !b || b.feld !== f.id; });
-      if (falsch.length) fehler.push(falsch.length + " Zuordnung" + (falsch.length === 1 ? " passt" : "en passen") + " noch nicht.");
+
+    var falsch = FELDER.filter(function (f) {
+      var b = baustein(t[f.id]);
+      return !b || b.feld !== f.id;
+    });
+    if (falsch.length && !ablenker.length) {
+      fehler.push(HINWEISE.falsch ||
+        "Die Zuordnung stimmt noch nicht überall. Lies den Text erneut.");
     }
     return fehler;
   }

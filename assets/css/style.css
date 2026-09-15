@@ -281,21 +281,25 @@ label.knopf.dateiwahl{ display:inline-flex; align-items:center; cursor:pointer; 
 @media (min-width:720px){
   .tafel{
     grid-template-columns:1fr 1fr 1fr;
+    /* Raster der Tafelbild-Plätze. In tafelbild_inhalt.js gibst du je Feld
+       eine dieser Klassen an: s-oben, s-links, s-rechts, s-linksbox,
+       s-mitte, s-rechtsbox, s-linksunten, s-rechtsunten, s-unten,
+       s-breit1, s-breit2. Nicht belegte Plätze bleiben einfach frei. */
     grid-template-areas:
-      ".        mensch     ."
-      "welt     .          christ"
-      "wreg     dienst     greg"
-      "gesetze  .          liebe"
-      ".        regierung  ."
-      "glaube   glaube     glaube"
-      "wider    wider      wider";
+      ".          oben        ."
+      "links      .           rechts"
+      "linksbox   mitte       rechtsbox"
+      "linksunten .           rechtsunten"
+      ".          unten       ."
+      "breit1     breit1      breit1"
+      "breit2     breit2      breit2";
   }
-  .tafel .s-mensch{grid-area:mensch}  .tafel .s-welt{grid-area:welt}
-  .tafel .s-christ{grid-area:christ}  .tafel .s-wreg{grid-area:wreg}
-  .tafel .s-dienst{grid-area:dienst}  .tafel .s-greg{grid-area:greg}
-  .tafel .s-gesetze{grid-area:gesetze}.tafel .s-liebe{grid-area:liebe}
-  .tafel .s-regierung{grid-area:regierung} .tafel .s-glaube{grid-area:glaube}
-  .tafel .s-wider{grid-area:wider}
+  .tafel .s-oben{grid-area:oben}            .tafel .s-links{grid-area:links}
+  .tafel .s-rechts{grid-area:rechts}        .tafel .s-linksbox{grid-area:linksbox}
+  .tafel .s-mitte{grid-area:mitte}          .tafel .s-rechtsbox{grid-area:rechtsbox}
+  .tafel .s-linksunten{grid-area:linksunten}.tafel .s-rechtsunten{grid-area:rechtsunten}
+  .tafel .s-unten{grid-area:unten}          .tafel .s-breit1{grid-area:breit1}
+  .tafel .s-breit2{grid-area:breit2}
 }
 
 /* ---------- Abgabe / Formular ---------- */

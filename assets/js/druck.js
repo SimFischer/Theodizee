@@ -78,8 +78,9 @@
   function inhaltHtml(state, info) {
     var werte = state.antworten || {};
     var h = '<section class="karte detail">' +
-      "<h1>Luthers Verständnis von Staat und Kirche</h1>" +
-      '<p class="lead">Zwei-Reiche-Lehre / Lehre von den zwei Regimenten – eigene Bearbeitung</p>' +
+      "<h1>" + esc((window.EINHEIT || {}).titel || "Meine Bearbeitung") + "</h1>" +
+      '<p class="lead">' + esc((window.EINHEIT || {}).untertitel || "") +
+      ((window.EINHEIT || {}).untertitel ? " – " : "") + "eigene Bearbeitung</p>" +
       kopfTabelle(state, info);
 
     window.SEITEN.forEach(function (s) {
@@ -99,7 +100,7 @@
     if (!hat) {
       h += '<p class="zusatz">Keine Markierungen vorhanden.</p>';
     } else {
-      Object.keys(window.KLIEMANN_TEXT.sections).forEach(function (id) {
+      Object.keys(window.QUELLE.sections).forEach(function (id) {
         if (!(mk[id] || []).length) return;
         h += window.Leser.statisch(id, mk[id]);
       });

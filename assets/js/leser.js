@@ -66,7 +66,7 @@
 
   /* ---- Bauteil ------------------------------------------------------ */
   function montieren(ziel, abschnittId, state, beiAenderung) {
-    var abschnitt = window.KLIEMANN_TEXT.sections[abschnittId];
+    var abschnitt = window.QUELLE.sections[abschnittId];
     if (!abschnitt) { ziel.innerHTML = ""; return null; }
     if (!state.markierungen[abschnittId]) state.markierungen[abschnittId] = [];
 
@@ -198,7 +198,7 @@
 
   /* Statische Darstellung für den Lehrerbereich */
   function statisch(abschnittId, markierungen) {
-    var abschnitt = window.KLIEMANN_TEXT.sections[abschnittId];
+    var abschnitt = window.QUELLE.sections[abschnittId];
     if (!abschnitt) return "";
     var liste = markierungen || [];
     return '<div class="leser"><div class="leser-kopf"><span class="titel">' + esc(abschnitt.titel) +

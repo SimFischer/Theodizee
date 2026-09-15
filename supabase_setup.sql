@@ -1,5 +1,5 @@
 -- =====================================================================
---  Luther – Staat und Kirche | Datenbank-Einrichtung für Supabase
+--  Lerneinheit-Vorlage | Datenbank-Einrichtung für Supabase
 --  ---------------------------------------------------------------
 --  Diese Datei einmalig im Supabase-Projekt ausführen:
 --     Supabase Dashboard  ->  SQL Editor  ->  New query
@@ -15,6 +15,11 @@
 --   * Lehrkräfte müssen angemeldet sein UND zusätzlich in der Tabelle
 --     public.lehrkraefte freigeschaltet sein.
 --   * Der service_role-Schlüssel wird nirgends im Frontend benötigt.
+--   * Die Spalte "einheit" trennt mehrere Lerneinheiten in derselben
+--     Tabelle. Jede Anwendung schreibt ihre eigene Kennung aus
+--     assets/js/einheit.js und liest auch nur diese wieder aus.
+--     Eine bestehende Tabelle lässt sich mit dieser Datei nachrüsten;
+--     vorhandene Zeilen bekommen dabei die Kennung 'standard'.
 -- =====================================================================
 
 -- ---------------------------------------------------------------- 1
@@ -34,6 +39,7 @@ create table if not exists public.abgaben (
   id              uuid primary key default gen_random_uuid(),
   erstellt_am     timestamptz not null default now(),
   art             text not null default 'abgabe',
+  einheit         text not null default 'standard',
   vorname         text not null,
   nachname        text not null,
   kurs            text not null,
@@ -57,12 +63,14 @@ create table if not exists public.abgaben (
 
 -- Nachrüstung für bereits bestehende Projekte
 alter table public.abgaben add column if not exists art text not null default 'abgabe';
+alter table public.abgaben add column if not exists einheit text not null default 'standard';
 alter table public.abgaben drop constraint if exists abgaben_art_gueltig;
 alter table public.abgaben add constraint abgaben_art_gueltig check (art in ('abgabe', 'zwischenstand'));
 
 create index if not exists abgaben_zeit_idx on public.abgaben (abgegeben_am desc);
 create index if not exists abgaben_art_idx  on public.abgaben (art);
 create index if not exists abgaben_kurs_idx on public.abgaben (kurs);
+create index if not exists abgaben_einheit_idx on public.abgaben (einheit);
 
 -- ---------------------------------------------------------------- 3
 -- Prüffunktion: Ist das angemeldete Konto freigeschaltet?

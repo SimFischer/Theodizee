@@ -17,7 +17,7 @@
      vorliegt (Supabase-Sitzung) UND das Konto in der Tabelle lehrkraefte
      freigeschaltet ist. Der Modus gilt nur für diesen Browser-Tab und verändert
      den gespeicherten Arbeitsstand nicht. */
-  var VORSCHAU_SCHLUESSEL = "luther-vorschau";
+  var VORSCHAU_SCHLUESSEL = ((window.EINHEIT || {}).speicherSchluessel || "lerneinheit") + ".vorschau";
   var vorschau = false;
   var vorschauAngefragt = (function () {
     var imLink = /[?&]vorschau(=|&|$)/.test(window.location.search);
@@ -178,7 +178,7 @@
 
   /* ---------------- Leseansicht ---------------- */
   function zeichneLeser(seite) {
-    var moeglich = Object.keys(window.KLIEMANN_TEXT.sections).filter(function (id) {
+    var moeglich = Object.keys(window.QUELLE.sections).filter(function (id) {
       var idx = seiteMitAbschnitt(id);
       return idx >= 0 && frei(idx);
     });
@@ -197,7 +197,7 @@
       wahl.style.margin = "-.4rem 0 1rem";
       wahl.innerHTML = '<span class="zusatz" style="margin:0">Abschnitt öffnen:</span>' +
         moeglich.map(function (id) {
-          var s = window.KLIEMANN_TEXT.sections[id];
+          var s = window.QUELLE.sections[id];
           return '<button type="button" class="knopf stumm klein" data-abschnitt="' + id + '"' +
             (id === aktuellerAbschnitt ? ' style="background:var(--blau-zart)"' : "") +
             '>Z. ' + s.von + "–" + s.bis + "</button>";
@@ -368,8 +368,8 @@
 
     h += sicherungHtml(!!s.abgabe);
 
-    h += '<div class="fuss"><p>' + esc(window.KLIEMANN_TEXT.autor) + ", „" +
-         esc(window.KLIEMANN_TEXT.titel) + "“</p>" +
+    h += '<div class="fuss"><p>' + esc(window.QUELLE.quelle ||
+           (window.QUELLE.autor + ", „" + window.QUELLE.titel + "“")) + "</p>" +
          '<p><a href="lehrer.html" class="fuss-link">Lehreransicht</a></p></div>';
 
     elInhalt.innerHTML = h;
@@ -535,15 +535,17 @@
   }
 
   function startInhalt() {
-    var t = window.KLIEMANN_TEXT;
+    var t = window.QUELLE;
+    var hinweise = (window.EINHEIT || {}).startHinweise || [];
+    var aufgaben = t.aufgabenImOriginal || [];
     return '<section class="karte"><h2>So arbeitest du</h2><ul>' +
-      "<li>Lies zuerst den Originalabschnitt, dann bearbeite die Aufgaben darunter.</li>" +
-      "<li>Der Text bleibt oben sichtbar und lässt sich ein- und ausklappen.</li>" +
-      "<li>Du kannst im Text markieren: Stelle auswählen, dann eine der vier Farben antippen.</li>" +
-      "<li>Dein Stand wird automatisch auf diesem Gerät gespeichert.</li>" +
-      "</ul><h2>Die Aufgaben des Materials</h2><ol>" +
-      t.aufgabenImOriginal.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") +
-      "</ol></section>";
+      hinweise.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") +
+      "</ul>" +
+      (aufgaben.length
+        ? "<h2>Die Aufgaben des Materials</h2><ol>" +
+          aufgaben.map(function (a) { return "<li>" + esc(a) + "</li>"; }).join("") + "</ol>"
+        : "") +
+      "</section>";
   }
 
   /* ---------------- Ereignisse ---------------- */
@@ -741,7 +743,10 @@
 
   function sammleAbgabe(vorname, nachname, kurs, art) {
     var recherche = {};
-    ["t0", "t1", "t2", "t3", "t4", "t5"].forEach(function (k) { if (ant(k) !== undefined) recherche[k] = ant(k); });
+    ((window.EINHEIT || {}).rechercheAufgaben || []).forEach(function (k) {
+      if (ant(k) !== undefined) recherche[k] = ant(k);
+    });
+    var urteilId = (window.EINHEIT || {}).urteilAufgabe;
     var abgeschlossen = 0;
     for (var i = 1; i < SEITEN.length - 1; i++) if (seiteFertig(i)) abgeschlossen++;
     return {
@@ -760,7 +765,8 @@
       markierungen: state.markierungen,
       tafelbild: state.tafelbild,
       recherche: recherche,
-      urteil: ant("t6") || "",
+      urteil: (urteilId ? ant(urteilId) : "") || "",
+      einheit: (window.EINHEIT || {}).id || "standard",
       vollstaendig: offeneBereiche().length === 0,
       client_id: geraeteId()
     };
@@ -768,7 +774,7 @@
 
   function geraeteId() {
     try {
-      var k = "luther-geraet";
+      var k = ((window.EINHEIT || {}).speicherSchluessel || "lerneinheit") + ".geraet";
       var v = localStorage.getItem(k);
       if (!v) { v = "g" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); localStorage.setItem(k, v); }
       return v;
@@ -877,8 +883,19 @@
       "abgelehnt");
   }
 
+  /* Überschriften aus einheit.js in die Seite schreiben */
+  function beschriftungen() {
+    var e = window.EINHEIT || {};
+    if (e.titel) document.title = e.titel + (e.untertitel ? " – " + e.untertitel : "");
+    var marke = document.querySelector("[data-marke]");
+    if (marke && e.kopfMarke) marke.childNodes[0].nodeValue = e.kopfMarke + " ";
+    var zusatz = document.querySelector("[data-marke] small");
+    if (zusatz && e.kopfZusatz) zusatz.textContent = e.kopfZusatz;
+  }
+
   /* ---------------- Start ---------------- */
   function los() {
+    beschriftungen();
     elSchritte = document.getElementById("schritte");
     elBalken   = document.getElementById("balken");
     elLeser    = document.getElementById("leser");

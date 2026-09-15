@@ -144,7 +144,7 @@
     if (!quelle) return;
     var kopie = quelle.cloneNode(true);
     kopie.querySelectorAll(".knopfzeile").forEach(function (k) { k.remove(); });
-    fetch("assets/css/style.css?v=10").then(function (res) { return res.ok ? res.text() : ""; })
+    fetch("assets/css/style.css?v=1").then(function (res) { return res.ok ? res.text() : ""; })
       .catch(function () { return ""; })
       .then(function (css) {
         var titel = (istKuerzel(a) ? anzeigeName(a) : a.vorname + " " + a.nachname) + " – " + a.kurs;
@@ -158,8 +158,18 @@
       });
   }
 
+  function beschriftungen() {
+    var e = window.EINHEIT || {};
+    if (e.titel) document.title = "Lehrerbereich – " + e.titel;
+    var zusatz = document.querySelector("[data-marke] small");
+    if (zusatz && e.kopfMarke) {
+      zusatz.textContent = e.kopfMarke + (e.kopfZusatz ? " – " + e.kopfZusatz : "");
+    }
+  }
+
   /* ---------------- Start ---------------- */
   function los() {
+    beschriftungen();
     if (!window.SB.istKonfiguriert()) {
       bereich.innerHTML = meldung("info", "Supabase ist noch nicht eingerichtet",
         "Trage Project URL und anon-/publishable-Key in assets/js/supabase_config.js ein und führe supabase_setup.sql im SQL-Editor aus. Die Schüleranwendung funktioniert auch ohne diese Einrichtung.");
@@ -330,7 +340,9 @@
   /* ---------------- Daten ---------------- */
   function laden() {
     bereich.innerHTML = '<div class="karte">Abgaben werden geladen …</div>';
-    sb.from("abgaben").select("*").order("abgegeben_am", { ascending: false })
+    sb.from("abgaben").select("*")
+      .eq("einheit", (window.EINHEIT || {}).id || "standard")
+      .order("abgegeben_am", { ascending: false })
       .then(function (res) {
         if (res.error) {
           bereich.innerHTML = meldung("fehler", "Abgaben konnten nicht geladen werden", res.error.message);
@@ -557,7 +569,7 @@
     var mk = a.markierungen || {};
     var hatMk = Object.keys(mk).some(function (k) { return (mk[k] || []).length; });
     if (!hatMk) h += '<p class="zusatz">Keine Markierungen vorhanden.</p>';
-    else Object.keys(window.KLIEMANN_TEXT.sections).forEach(function (id) {
+    else Object.keys(window.QUELLE.sections).forEach(function (id) {
       if (!(mk[id] || []).length) return;
       h += window.Leser.statisch(id, mk[id]);
     });

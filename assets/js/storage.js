@@ -1,7 +1,9 @@
 /* Lokale Zwischenspeicherung des Arbeitsstandes (localStorage). */
 (function () {
   "use strict";
-  var SCHLUESSEL = "luther-staat-kirche-q1.v1";
+  /* Eigener Schluessel je Einheit - siehe einheit.js. Ohne das wuerden
+     mehrere Einheiten unter derselben Adresse denselben Speicher benutzen. */
+  var SCHLUESSEL = (window.EINHEIT || {}).speicherSchluessel || "lerneinheit.v1";
 
   function leer() {
     return {
