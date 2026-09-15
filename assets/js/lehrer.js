@@ -60,6 +60,10 @@
       var w = wert || {};
       return a.items.every(function (it) { return w[it.id] === it.korb; });
     }
+    if (a.typ === "kette") {
+      if (!Array.isArray(wert)) return false;
+      return wert.join(",") === a.reihenfolge.join(",");
+    }
     return null;
   }
 
@@ -482,6 +486,15 @@
           return "  • " + it.text + (it.korb === k.id ? " ✓" : " ✗");
         }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
+    }
+    if (a.typ === "kette") {
+      var kl = Array.isArray(v) ? v : [];
+      if (!kl.length) return kasten("");
+      return '<div class="antwort">' + kl.map(function (id, idx) {
+        var t = "";
+        a.items.forEach(function (it) { if (it.id === id) t = it.text; });
+        return (idx + 1) + ". " + t + (a.reihenfolge[idx] === id ? " ✓" : " ✗");
+      }).join("\n") + "</div>";
     }
     if (a.typ === "akrostichon") {
       v = v || {};

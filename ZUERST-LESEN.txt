@@ -1,15 +1,19 @@
 Hochladen bei GitHub
 ====================
 
-Diese sechs Dateien ersetzen die gleichnamigen Dateien im Repository
+Diese Dateien ersetzen die gleichnamigen Dateien im Repository
 SimFischer/Theodizee. Die Ordnerstruktur muss erhalten bleiben:
 
   index.html
   lehrer.html
   README.md
+  assets/css/style.css
   assets/js/seiten.js
   assets/js/einheit.js
   assets/js/quelle.js
+  assets/js/app.js
+  assets/js/druck.js
+  assets/js/lehrer.js
 
 So geht es im Browser:
 
@@ -23,8 +27,12 @@ So geht es im Browser:
 4. GitHub zeigt an, dass bestehende Dateien ersetzt werden - das ist so
    gewollt.
 5. Unten eine kurze Commit-Nachricht eintragen, z. B.
-   "Aufgaben auf Oberstufenniveau, Gottesbild statt Debatte".
+   "Stunde gekuerzt, Argumentationskette ergaenzt".
 6. "Commit changes" klicken.
+
+Neu in dieser Fassung ist der Aufgabentyp "kette" (Argumentationskette
+sortieren). Er steckt in app.js, style.css, druck.js und lehrer.js -
+deshalb muessen diese vier Dateien diesmal mit hochgeladen werden.
 
 Die ?v=-Nummern in index.html und lehrer.html sind bereits erhoeht, die
 iPads holen sich die neuen Dateien also von selbst.

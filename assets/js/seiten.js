@@ -1,8 +1,8 @@
 /* =====================================================================
    SEITEN  —  Theodizee: Leibniz und Voltaire
    Aufbau nach dem Stundenraster vom 05.05.2025:
-   Einstieg – Erarbeitung I – Sicherung I – Gelenk – Erarbeitung II –
-   Sicherung II – Vertiefung (Gottesbild) – Abgabe
+   Einstieg – Erarbeitung I – Gelenk – Erarbeitung II –
+   Schaubild – Vertiefung (Gottesbild) – Abgabe
    ---------------------------------------------------------------------
    Anspruchsniveau: Oberstufe (Q2). Reine Textsuche (AFB I) ist nur dort
    vorgesehen, wo sie eine anschliessende Deutung vorbereitet; der
@@ -63,7 +63,7 @@ window.SEITEN = [
         { id: "c", label: "metaphysisches Übel – Leid aus der Endlichkeit alles Geschaffenen" }
       ],
       items: [
-        { id: "i1", text: "Eine Flutwelle reißt die Menschen im Hafen mit sich", korb: "a" },
+        { id: "i1", text: "Eine Flutwelle reißt die Menschen am Hafen mit sich", korb: "a" },
         { id: "i2", text: "Plünderer nutzen die zerstörte Stadt aus", korb: "b" },
         { id: "i3", text: "Kein Mensch kann die Folgen seiner Entscheidungen ganz überblicken", korb: "c" },
         { id: "i4", text: "Eine Seuche breitet sich unter den Überlebenden aus", korb: "a" },
@@ -74,7 +74,7 @@ window.SEITEN = [
       hinweisFalsch: "Eine Zuordnung passt noch nicht. Frage jeweils: Wer oder was ist die Ursache – die Natur, ein menschlicher Wille oder die Endlichkeit selbst?" },
 
     { id: "k4", typ: "text",
-      frage: "Prüfe die Unterscheidung an einem Grenzfall: In Lissabon starben besonders viele Menschen in den schlecht gebauten Häusern der Armenviertel. Erörtere, ob dieses Leid ein physisches oder ein moralisches Übel ist – und was jeweils davon abhängt, wie man es einordnet.",
+      frage: "Prüfe die Unterscheidung an einem Grenzfall: In einem Dorf bricht bei Hochwasser der Deich, weil er seit Jahren nicht ausgebessert wurde. Menschen sterben. Erörtere, ob dieses Leid ein physisches oder ein moralisches Übel ist – und was davon abhängt, wie man es einordnet.",
       zusatz: "Denk daran, wen die Einordnung entlastet und wen sie in die Verantwortung nimmt.",
       minLen: 300,
       zeilen: 7,
@@ -124,13 +124,7 @@ window.SEITEN = [
           rueck: "Leibniz schreibt, Gott handle „nicht anders, als nach der höchsten Vernunft“. Das ist kein Zwang von außen, sondern eine Folge seiner eigenen Vollkommenheit – Gott kann nicht gegen sich selbst handeln." },
         { id: "b1b", text: "Hätte es unter den möglichen Welten keine beste gegeben, hätte Gott überhaupt keine Welt geschaffen.",
           loesung: 0, begruendung: true,
-          rueck: "Genau das sagt der Bedingungssatz des Zitats. Schöpfung setzt für Leibniz einen vernünftigen Wahlgrund voraus." },
-        { id: "b1c", text: "Mit „Welt“ meint Leibniz die Erde und ihre Bewohner.",
-          loesung: 2, begruendung: true,
-          rueck: "„Welt“ ist bei Leibniz „das ganze Nebeneinandersein aller bestehenden Dinge“ – über alle Zeiten und Orte hinweg. Nicht ein Ort, sondern ein vollständiger Zusammenhang." },
-        { id: "b1d", text: "Das Zitat beweist, dass unsere Welt die beste ist.",
-          loesung: 2, begruendung: true,
-          rueck: "Leibniz beweist nichts an der Welt, er folgert vom Begriff Gottes her: Ein vollkommen weiser und guter Schöpfer kann nur das Beste wählen. Die These steht und fällt also mit dieser Voraussetzung." }
+          rueck: "Genau das sagt der Bedingungssatz des Zitats. Schöpfung setzt für Leibniz einen vernünftigen Wahlgrund voraus." }
       ],
       hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
       hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
@@ -190,7 +184,7 @@ window.SEITEN = [
       hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
 
     { id: "c3", typ: "text",
-      frage: "Leibniz’ Begründungen tragen unterschiedlich weit. Bestimme, welche seiner vier Begründungen das physische Übel (etwa eine Naturkatastrophe) am wenigsten erklärt – und begründe dein Urteil.",
+      frage: "Leibniz’ Begründungen tragen unterschiedlich weit. Bestimme, welche seiner Begründungen das physische Übel – etwa eine Naturkatastrophe – am wenigsten erklärt, und begründe dein Urteil.",
       zusatz: "Freiheit, Geschöpflichkeit, begrenzte Sicht, Entwicklungspotential: Halte jede Begründung an einen konkreten Fall und sieh zu, wo sie greift und wo nicht.",
       minLen: 280,
       zeilen: 7,
@@ -200,24 +194,7 @@ window.SEITEN = [
 
 /* ---------------------------------------------------------------- 5 */
 {
-  id: "sicherung1", kurz: "5", kapitel: "Lernschritt 5",
-  titel: "Sicherung: Assoziieren mit Buchstaben – Leibniz",
-  lead: "Sichere die zentralen Begriffe des Textes.",
-  abschnitt: "l3",
-  aufgaben: [
-    { id: "s1", typ: "akrostichon",
-      frage: "Notiere zu jedem Buchstaben des Wortes „GERECHT“ einen Begriff oder Ausdruck, der zum Erklärungsversuch von Leibniz passt.",
-      wort: "GERECHT",
-      wortHinweis: "Der jeweilige Buchstabe muss nicht am Anfang deines Wortes stehen – er kann auch mittendrin vorkommen.",
-      minLen: 3,
-      hinweisLeer: "Es fehlen noch Begriffe. Geh den Text durch und suche nach Schlüsselwörtern.",
-      hinweisBuchstabe: "In diesen Begriffen kommt der vorgegebene Buchstabe noch nicht vor." }
-  ]
-},
-
-/* ---------------------------------------------------------------- 6 */
-{
-  id: "gelenk", kurz: "6", kapitel: "Lernschritt 6",
+  id: "gelenk", kurz: "5", kapitel: "Lernschritt 5",
   titel: "Gelenk: Das Erdbeben von Lissabon 1755",
   lead: "Ein einziges Ereignis hat das optimistische Denken der Aufklärung erschüttert. Lies den Bericht gründlich – achte dabei nicht nur darauf, was geschah, sondern wen es traf.",
   abschnitt: "g1",
@@ -238,7 +215,7 @@ window.SEITEN = [
           rueck: "Logisch widerlegt es sie nicht – Leibniz kann jedes Einzelübel als notwendigen Teil des Ganzen deuten. Was zerbricht, ist nicht die Beweisbarkeit, sondern die Zumutbarkeit dieser Deutung." },
         { id: "g1a4", text: "Dass das Beben europaweit zum Streitfall wurde, lag auch an einer technischen Entwicklung.",
           loesung: 0, begruendung: true,
-          rueck: "Der Text nennt die fortgeschrittene Presseverbreitung: Lissabon gilt als erstes großes internationales Medienereignis. Erst die Öffentlichkeit macht aus einem Unglück eine Debatte." }
+          rueck: "Der Text nennt die fortgeschrittene Presseverbreitung: Lissabon gilt als erstes großes internationales Medienereignis. Erst die Öffentlichkeit macht aus einem Unglück eine Auseinandersetzung." }
       ],
       hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
       hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
@@ -260,9 +237,9 @@ window.SEITEN = [
   ]
 },
 
-/* ---------------------------------------------------------------- 7 */
+/* ---------------------------------------------------------------- 6 */
 {
-  id: "voltaire1", kurz: "7", kapitel: "Lernschritt 7",
+  id: "voltaire1", kurz: "6", kapitel: "Lernschritt 6",
   titel: "Voltaire: Die Antwort auf Lissabon",
   lead: "Für Voltaire stand das Erdbeben im deutlichen Gegensatz zu Leibniz’ „bester aller möglichen Welten“.",
   abschnitt: "v1",
@@ -302,9 +279,9 @@ window.SEITEN = [
   ]
 },
 
-/* ---------------------------------------------------------------- 8 */
+/* ---------------------------------------------------------------- 7 */
 {
-  id: "voltaire2", kurz: "8", kapitel: "Lernschritt 8",
+  id: "voltaire2", kurz: "7", kapitel: "Lernschritt 7",
   titel: "Voltaire im Wortlaut",
   lead: "Drei Zitate. Achte darauf, wie Voltaire spricht – der Ton ist Teil des Arguments.",
   abschnitt: "v2",
@@ -321,48 +298,37 @@ window.SEITEN = [
       zusatz: "Was genau ist an diesem Trost verletzend? Sieh dir an, wovon die aufgezählten Vorteile handeln – und wem sie zugutekommen.",
       minLen: 250,
       zeilen: 6,
-      hinweisLeer: "Deine Erklärung fehlt noch oder ist sehr knapp." },
-
-    { id: "v2c", typ: "text",
-      frage: "Im dritten Zitat spricht Voltaire von „unsichtbaren Knoten“. Deute das Bild und bestimme, was Voltaire Leibniz damit genau vorwirft: einen Denkfehler, eine fehlende Erklärung oder eine Zumutung? Entscheide dich begründet und belege am Wortlaut.",
-      zusatz: "„Leibnitz lehrt mich nicht …“ – achte darauf, was Voltaire hier behauptet und was er gerade nicht behauptet.",
-      minLen: 280,
-      zeilen: 7,
-      hinweisLeer: "Deine Deutung fehlt noch oder ist zu knapp. Nenne das Bild, entscheide dich für eine der drei Möglichkeiten und belege sie." }
+      hinweisLeer: "Deine Erklärung fehlt noch oder ist sehr knapp." }
   ]
 },
 
-/* ---------------------------------------------------------------- 9 */
+/* ---------------------------------------------------------------- 8 */
 {
-  id: "voltaire3", kurz: "9", kapitel: "Lernschritt 9",
+  id: "voltaire3", kurz: "8", kapitel: "Lernschritt 8",
   titel: "Voltaire: Leid ohne Sinn",
-  lead: "Zum Schluss der Erarbeitung: Was setzt Voltaire an die Stelle von Leibniz’ Deutung?",
+  lead: "Zum Schluss der Erarbeitung: Was setzt Voltaire an die Stelle von Leibniz’ Deutung? Sein Gedankengang hängt Schritt für Schritt zusammen – rekonstruiere ihn.",
   abschnitt: "v3",
   aufgaben: [
-    { id: "v3a", typ: "aussagen",
-      frage: "Prüfe die folgenden Aussagen über Voltaires Position am Text.",
-      zusatz: "Begründe jede Einordnung am Text – auch dort, wo die Aussage zutrifft.",
-      kategorien: ["trifft zu", "muss präzisiert werden", "trifft nicht zu"],
+    { id: "v3a", typ: "kette",
+      frage: "Voltaires Gedankengang liegt durcheinander. Bringe die fünf Schritte in die Reihenfolge, in der sie auseinander folgen.",
+      zusatz: "Tippe einen Baustein an, um ihn anzuhängen. Mit den Pfeilen verschiebst du ihn, mit dem × geht er zurück in den Vorrat. Frage dich bei jedem Schritt: Was muss gesagt sein, damit der nächste Satz überhaupt Sinn ergibt?",
+      /* Die Reihenfolge dieser Liste ist bewusst gemischt – sie bestimmt,
+         wie die Bausteine im Vorrat erscheinen. Die Lösung steht unten
+         im Feld "reihenfolge". */
       items: [
-        { id: "v3a1", text: "Voltaire setzt an die Stelle der Theodizee einen neuen Erklärungsansatz.",
-          loesung: 2, begruendung: true,
-          rueck: "Der Text sagt ausdrücklich das Gegenteil: Voltaire kritisiert, ohne eine neue Erklärung anzubieten. Für ihn gilt es auszuhalten, dass es keinen Sinn gibt." },
-        { id: "v3a2", text: "Nach Voltaire bleibt dem Menschen die Hoffnung auf ein lebenswertes Leben.",
-          loesung: 0, begruendung: true,
-          rueck: "Genau darin besteht bei Voltaire das, was bleibt – aber eben als Hoffnung, nicht als Deutung des Leids. Die Hoffnung erklärt nichts, sie hält offen." },
-        { id: "v3a3", text: "Die Rede von der besten aller möglichen Welten nimmt der Hoffnung ihren Gegenstand.",
-          loesung: 0, begruendung: true,
-          rueck: "Wenn diese Welt schon die beste ist, lässt sich keine bessere mehr erhoffen – so argumentiert Voltaire. Der Optimismus schlägt dabei in Resignation um." },
-        { id: "v3a4", text: "Voltaires Kritik trifft sich an einem Punkt mit einer theologischen Kritik am Optimismus.",
-          loesung: 0, begruendung: true,
-          rueck: "Der Optimismus widerspricht dem christlichen Axiom einer sündhaften Welt, die erlöst werden muss. Ein Atheismusvorwurf greift hier also zu kurz." }
+        { id: "kt4", text: "In der „besten aller möglichen Welten“ lässt sich aber keine bessere Zukunft mehr erhoffen." },
+        { id: "kt1", text: "Die Philosophen deuten das Leid als Teil einer großen, idealen Ordnung." },
+        { id: "kt5", text: "Also nimmt der Optimismus der Hoffnung ihren Gegenstand – und widerspricht der christlichen Rede von einer Welt, die Erlösung braucht." },
+        { id: "kt3", text: "Was dem Menschen bleibt, ist allein die Hoffnung, trotz allem ein lebenswertes Leben zu führen." },
+        { id: "kt2", text: "Für Voltaire ist das Zynismus und Verspottung der Leidenden: Das Leid hat keinen Sinn." }
       ],
-      hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
-      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
+      reihenfolge: ["kt1", "kt2", "kt3", "kt4", "kt5"],
+      hinweisLeer: "Es liegen noch Bausteine im Vorrat. Alle fünf gehören in die Kette.",
+      hinweisFalsch: "Die Reihenfolge stimmt noch nicht. Der Gedankengang beginnt bei dem, was die anderen behaupten, und endet bei dem, was Voltaire daraus folgert." },
 
     { id: "v3b", typ: "text",
       frage: "Notiere Voltaires Argumente gegen Leibniz in eigenen Worten und gib zu jedem an, ob es Leibniz’ These als falsch oder als unzumutbar angreift.",
-      zusatz: "Mindestens drei Argumente, jeweils mit Belegstelle – du brauchst sie in Lernschritt 12 wieder.",
+      zusatz: "Mindestens drei Argumente, jeweils mit Belegstelle – du brauchst sie in Lernschritt 10 wieder.",
       minLen: 300,
       zeilen: 8,
       platzhalter: "1. Argument – Beleg – greift an als: falsch / unzumutbar\n2. …\n3. …",
@@ -370,26 +336,9 @@ window.SEITEN = [
   ]
 },
 
-/* ---------------------------------------------------------------- 10 */
+/* ---------------------------------------------------------------- 9 */
 {
-  id: "sicherung2", kurz: "10", kapitel: "Lernschritt 10",
-  titel: "Sicherung: Assoziieren mit Buchstaben – Voltaire",
-  lead: "Dieselbe Übung wie bei Leibniz – jetzt aus Voltaires Sicht.",
-  abschnitt: "v3",
-  aufgaben: [
-    { id: "s2", typ: "akrostichon",
-      frage: "Notiere zu jedem Buchstaben des Wortes „GERECHT“ einen Begriff oder Ausdruck, der zum Erklärungsversuch von Voltaire passt.",
-      wort: "GERECHT",
-      wortHinweis: "Der jeweilige Buchstabe muss nicht am Anfang deines Wortes stehen – er kann auch mittendrin vorkommen.",
-      minLen: 3,
-      hinweisLeer: "Es fehlen noch Begriffe. Geh die Voltaire-Texte durch.",
-      hinweisBuchstabe: "In diesen Begriffen kommt der vorgegebene Buchstabe noch nicht vor." }
-  ]
-},
-
-/* ---------------------------------------------------------------- 11 */
-{
-  id: "tafel", kurz: "11", kapitel: "Lernschritt 11",
+  id: "tafel", kurz: "9", kapitel: "Lernschritt 9",
   titel: "Beide Positionen im Überblick",
   lead: "Baue das Schaubild auf. Tippe einen Baustein an und dann das Feld, in das er gehört – oder ziehe ihn mit dem Finger, dem Pencil oder der Maus dorthin.",
   abschnitt: null,
@@ -398,9 +347,9 @@ window.SEITEN = [
   aufgaben: []
 },
 
-/* ---------------------------------------------------------------- 12 */
+/* ---------------------------------------------------------------- 10 */
 {
-  id: "gottesbild", kurz: "12", kapitel: "Lernschritt 12",
+  id: "gottesbild", kurz: "10", kapitel: "Lernschritt 10",
   titel: "Das Gottesbild auf dem Prüfstand",
   lead: "Leibniz und Voltaire streiten nicht nur über das Leid, sondern über Gott. Denn die Theodizeefrage entsteht erst, wenn man drei Sätze gleichzeitig für wahr hält: Gott ist allmächtig. Gott ist gut. Und es gibt sinnloses Leid. Alle drei zusammen lassen sich nicht widerspruchsfrei denken – wer an der Frage arbeitet, muss also an einem der drei Sätze etwas verändern. Welcher es ist, entscheidet darüber, welches Bild von Gott am Ende übrig bleibt.",
   abschnitt: null,
@@ -467,9 +416,9 @@ window.SEITEN = [
   ]
 },
 
-/* ---------------------------------------------------------------- 13 */
+/* ---------------------------------------------------------------- 11 */
 {
-  id: "ertrag", kurz: "13", kapitel: "Lernschritt 13",
+  id: "ertrag", kurz: "11", kapitel: "Lernschritt 11",
   titel: "Ertrag und eigene Stellungnahme",
   lead: "Du hast beide Positionen geprüft und gesehen, woran sich die Gottesbilder scheiden. Jetzt sprichst du mit eigener Stimme.",
   abschnitt: null,
@@ -507,7 +456,7 @@ window.SEITEN = [
             "Argumente für Voltaires Position – und wo sie tragen.",
             "Unterscheide durchgehend zwei Fragen: Ist eine Deutung des Leids in sich schlüssig? Und: Ist sie gegenüber Betroffenen vertretbar?",
             "Prüfe den schwierigsten Punkt: Wem gegenüber wird eine Deutung des Leids ausgesprochen? Macht es einen Unterschied, ob ein Betroffener sie für sich selbst findet oder ob ein Dritter sie ihm zuspricht?",
-            "Beziehe dein Ergebnis aus Lernschritt 12 ein: An welchem der drei Sätze – Allmacht, Güte, Sinnlosigkeit des Leids – hältst du fest, und welches Gottesbild folgt daraus?"
+            "Beziehe dein Ergebnis aus Lernschritt 10 ein: An welchem der drei Sätze – Allmacht, Güte, Sinnlosigkeit des Leids – hältst du fest, und welches Gottesbild folgt daraus?"
           ] },
         { titel: "Schluss",
           zusatz: "Keine neuen Argumente mehr – aber eine klare Position.",
@@ -531,7 +480,7 @@ window.SEITEN = [
 
 /* ---------------------------------------------------------------- Abgabe */
 {
-  id: "abgabe", kurz: "14", kapitel: "Abschluss",
+  id: "abgabe", kurz: "12", kapitel: "Abschluss",
   titel: "Arbeit abgeben",
   lead: "Trage deinen Namen und deinen Kurs ein und gib deine Arbeit verbindlich ab.",
   abschnitt: null,

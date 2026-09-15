@@ -43,6 +43,15 @@
           (drin.length ? drin.map(function (it) { return "  • " + it.text; }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
     }
+    if (a.typ === "kette") {
+      var kl = Array.isArray(v) ? v : [];
+      if (!kl.length) return kasten("");
+      return '<div class="antwort">' + kl.map(function (id, idx) {
+        var t = "";
+        a.items.forEach(function (it) { if (it.id === id) t = it.text; });
+        return (idx + 1) + ". " + t;
+      }).join("\n") + "</div>";
+    }
     if (a.typ === "akrostichon") {
       v = v || {};
       return '<div class="antwort">' + a.wort.split("").map(function (bu, idx) {

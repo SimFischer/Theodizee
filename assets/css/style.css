@@ -345,6 +345,32 @@ label.feld > span{ display:block; margin-bottom:.25rem; font-weight:600; color:v
 
 
 /* ---------- Akrostichon ---------- */
+/* --- Argumentationskette ------------------------------------------- */
+.kette{ list-style:none; margin:.8rem 0 0; padding:0; display:grid; gap:.45rem; counter-reset:kette; }
+.kette-glied{
+  display:flex; align-items:flex-start; gap:.6rem;
+  border:1px solid var(--linie); border-radius:var(--r);
+  background:var(--papier); padding:.55rem .6rem;
+}
+.kette-nr{
+  flex:0 0 auto; width:1.7rem; height:1.7rem; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--blau-tief); color:#fff;
+  font-family:var(--serif); font-size:.9rem; font-weight:600;
+}
+.kette-text{ flex:1 1 auto; line-height:1.4; padding-top:.15rem; }
+.kette-knoepfe{ flex:0 0 auto; display:flex; gap:.25rem; }
+.kette-knopf{
+  width:2rem; height:2rem; border-radius:var(--r-s);
+  border:1px solid var(--linie); background:var(--papier-tief);
+  cursor:pointer; padding:0; font-size:1rem; line-height:1; color:var(--blau-tief);
+}
+.kette-knopf:disabled{ opacity:.35; cursor:default; }
+.kette-leer{
+  border:1px dashed var(--linie); border-radius:var(--r);
+  padding:.7rem .8rem; margin:0;
+}
+
 .akrostichon{ display:grid; gap:.45rem; margin-top:.4rem; }
 .akro-zeile{ display:flex; align-items:center; gap:.7rem; }
 .akro-buchstabe{

@@ -126,6 +126,12 @@
       else if (a.items.some(function (it) { return v[it.id] !== it.korb; })) f.push(a.hinweisFalsch);
     }
 
+    else if (a.typ === "kette") {
+      var kl = Array.isArray(v) ? v : [];
+      if (kl.length < a.items.length) f.push(a.hinweisLeer);
+      else if (kl.join(",") !== a.reihenfolge.join(",")) f.push(a.hinweisFalsch);
+    }
+
     else if (a.typ === "akrostichon") {
       v = v || {};
       var offenA = [], falscheA = [];
@@ -327,6 +333,35 @@
               '" title="Zurück in den Vorrat">' + esc(it.text) + "</button>";
           }).join("") : '<span class="zusatz" style="margin:0">noch leer</span>') + "</div></div>";
       }).join("") + "</div>";
+    }
+
+    else if (a.typ === "kette") {
+      var reihe = Array.isArray(v) ? v.slice() : [];
+      var offenK = a.items.filter(function (it) { return reihe.indexOf(it.id) < 0; });
+      var textVon = function (id) {
+        var tr = null;
+        a.items.forEach(function (it) { if (it.id === id) tr = it.text; });
+        return tr || "";
+      };
+      h += '<div class="vorrat" data-vorrat="' + a.id + '">' +
+        (offenK.length ? offenK.map(function (it) {
+          return '<button type="button" class="chip" data-kette-add="' + it.id + '" data-ziel="' + a.id + '">' +
+            esc(it.text) + "</button>";
+        }).join("") : '<span class="zusatz" style="margin:0">Alle Bausteine sind eingeordnet.</span>') + "</div>";
+      h += '<ol class="kette" data-kette="' + a.id + '">' +
+        (reihe.length ? reihe.map(function (id, idx) {
+          return '<li class="kette-glied"><span class="kette-nr">' + (idx + 1) + "</span>" +
+            '<span class="kette-text">' + esc(textVon(id)) + "</span>" +
+            '<span class="kette-knoepfe">' +
+            '<button type="button" class="kette-knopf" data-kette-hoch="' + id + '" data-ziel="' + a.id +
+            '" aria-label="nach oben"' + (idx === 0 ? " disabled" : "") + ">↑</button>" +
+            '<button type="button" class="kette-knopf" data-kette-runter="' + id + '" data-ziel="' + a.id +
+            '" aria-label="nach unten"' + (idx === reihe.length - 1 ? " disabled" : "") + ">↓</button>" +
+            '<button type="button" class="kette-knopf" data-kette-raus="' + id + '" data-ziel="' + a.id +
+            '" aria-label="zurück in den Vorrat">×</button>' +
+            "</span></li>";
+        }).join("") : '<li class="kette-leer zusatz">Noch kein Baustein eingeordnet. Tippe oben auf den Schritt, der am Anfang steht.</li>') +
+        "</ol>";
     }
 
     else if (a.typ === "akrostichon") {
@@ -656,6 +691,39 @@
         return;
       }
       if (ev.target.closest("[data-reset]")) { zuruecksetzen(); return; }
+
+      /* Argumentationskette: anhängen, verschieben, zurücklegen */
+      var kAdd = ev.target.closest("[data-kette-add]");
+      if (kAdd) {
+        var la = ant(kAdd.dataset.ziel);
+        la = Array.isArray(la) ? la.slice() : [];
+        if (la.indexOf(kAdd.dataset.ketteAdd) < 0) la.push(kAdd.dataset.ketteAdd);
+        setAnt(kAdd.dataset.ziel, la);
+        zeichneAufgabeNeu(kAdd.dataset.ziel);
+        return;
+      }
+      var kMove = ev.target.closest("[data-kette-hoch], [data-kette-runter]");
+      if (kMove) {
+        var hoch = kMove.dataset.ketteHoch !== undefined;
+        var wer = hoch ? kMove.dataset.ketteHoch : kMove.dataset.ketteRunter;
+        var lm = ant(kMove.dataset.ziel);
+        lm = Array.isArray(lm) ? lm.slice() : [];
+        var pos = lm.indexOf(wer), neu = pos + (hoch ? -1 : 1);
+        if (pos >= 0 && neu >= 0 && neu < lm.length) {
+          lm[pos] = lm[neu]; lm[neu] = wer;
+          setAnt(kMove.dataset.ziel, lm);
+          zeichneAufgabeNeu(kMove.dataset.ziel);
+        }
+        return;
+      }
+      var kRaus = ev.target.closest("[data-kette-raus]");
+      if (kRaus) {
+        var lr = ant(kRaus.dataset.ziel);
+        lr = Array.isArray(lr) ? lr.filter(function (x) { return x !== kRaus.dataset.ketteRaus; }) : [];
+        setAnt(kRaus.dataset.ziel, lr);
+        zeichneAufgabeNeu(kRaus.dataset.ziel);
+        return;
+      }
 
       var chip = ev.target.closest("[data-chip]");
       if (chip) {
