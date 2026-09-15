@@ -27,12 +27,13 @@ So geht es im Browser:
 4. GitHub zeigt an, dass bestehende Dateien ersetzt werden - das ist so
    gewollt.
 5. Unten eine kurze Commit-Nachricht eintragen, z. B.
-   "Stunde gekuerzt, Argumentationskette ergaenzt".
+   "Schlanke Fassung: eine Aufgabe je Lernschritt, neue Aufgabentypen".
 6. "Commit changes" klicken.
 
-Neu in dieser Fassung ist der Aufgabentyp "kette" (Argumentationskette
-sortieren). Er steckt in app.js, style.css, druck.js und lehrer.js -
-deshalb muessen diese vier Dateien diesmal mit hochgeladen werden.
+Neu sind die Aufgabentypen "kette" (Argumentationskette sortieren) und
+"lueckentext" (Fliesstext mit Auswahlfeldern). Beide stecken in app.js,
+style.css, druck.js und lehrer.js - deshalb muessen diese vier Dateien
+mit hochgeladen werden.
 
 Die ?v=-Nummern in index.html und lehrer.html sind bereits erhoeht, die
 iPads holen sich die neuen Dateien also von selbst.

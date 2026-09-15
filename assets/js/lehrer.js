@@ -60,6 +60,11 @@
       var w = wert || {};
       return a.items.every(function (it) { return w[it.id] === it.korb; });
     }
+    if (a.typ === "lueckentext") {
+      var lw = wert || {};
+      return a.teile.filter(function (t) { return typeof t !== "string"; })
+        .every(function (l) { return lw[l.id] === l.loesung; });
+    }
     if (a.typ === "kette") {
       if (!Array.isArray(wert)) return false;
       return wert.join(",") === a.reihenfolge.join(",");
@@ -156,7 +161,7 @@
     if (!quelle) return;
     var kopie = quelle.cloneNode(true);
     kopie.querySelectorAll(".knopfzeile").forEach(function (k) { k.remove(); });
-    fetch("assets/css/style.css?v=3").then(function (res) { return res.ok ? res.text() : ""; })
+    fetch("assets/css/style.css?v=5").then(function (res) { return res.ok ? res.text() : ""; })
       .catch(function () { return ""; })
       .then(function (css) {
         var titel = (istKuerzel(a) ? anzeigeName(a) : a.vorname + " " + a.nachname) + " – " + a.kurs;
@@ -486,6 +491,15 @@
           return "  • " + it.text + (it.korb === k.id ? " ✓" : " ✗");
         }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
+    }
+    if (a.typ === "lueckentext") {
+      var lv = v || {};
+      return '<div class="antwort">' + a.teile.map(function (t) {
+        if (typeof t === "string") return esc(t);
+        var w = lv[t.id];
+        if (w === undefined || w === null) return " [— offen —] ";
+        return " [" + esc(t.optionen[w]) + (w === t.loesung ? " ✓" : " ✗") + "] ";
+      }).join("") + "</div>";
     }
     if (a.typ === "kette") {
       var kl = Array.isArray(v) ? v : [];

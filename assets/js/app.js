@@ -132,6 +132,14 @@
       else if (kl.join(",") !== a.reihenfolge.join(",")) f.push(a.hinweisFalsch);
     }
 
+    else if (a.typ === "lueckentext") {
+      var lv = v || {};
+      var luecken = a.teile.filter(function (t) { return typeof t !== "string"; });
+      var offenL = luecken.filter(function (l) { return lv[l.id] === undefined || lv[l.id] === null; });
+      if (offenL.length) f.push(a.hinweisLeer);
+      else if (luecken.some(function (l) { return lv[l.id] !== l.loesung; })) f.push(a.hinweisFalsch);
+    }
+
     else if (a.typ === "akrostichon") {
       v = v || {};
       var offenA = [], falscheA = [];
@@ -333,6 +341,18 @@
               '" title="Zurück in den Vorrat">' + esc(it.text) + "</button>";
           }).join("") : '<span class="zusatz" style="margin:0">noch leer</span>') + "</div></div>";
       }).join("") + "</div>";
+    }
+
+    else if (a.typ === "lueckentext") {
+      var lw = v || {};
+      h += '<p class="lueckentext">' + a.teile.map(function (t) {
+        if (typeof t === "string") return esc(t);
+        return '<select class="luecke" data-typ="luecke" data-ziel="' + a.id + '" data-luecke="' + t.id +
+          '" aria-label="Lücke"><option value="">— wählen —</option>' +
+          t.optionen.map(function (o, i) {
+            return '<option value="' + i + '"' + (lw[t.id] === i ? " selected" : "") + ">" + esc(o) + "</option>";
+          }).join("") + "</select>";
+      }).join("") + "</p>";
     }
 
     else if (a.typ === "kette") {
@@ -783,6 +803,12 @@
         setAnt(ziel, liste);
       }
       else if (typ === "position-wahl") { var p = ant(ziel) || {}; p.wahl = +el.value; setAnt(ziel, p); }
+      else if (typ === "luecke") {
+        var lu = ant(ziel) || {};
+        if (el.value === "") delete lu[el.dataset.luecke];
+        else lu[el.dataset.luecke] = +el.value;
+        setAnt(ziel, lu);
+      }
       else if (typ === "auswahl") {
         var a = ant(ziel) || {};
         var eigen = document.querySelector('[data-eigen="' + ziel + '"]');

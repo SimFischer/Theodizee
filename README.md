@@ -8,29 +8,46 @@ Abgaben liegen in einem Supabase-Projekt.
 
 | Phase der Stunde | Lernschritte in der Anwendung |
 |---|---|
-| Einstieg (Karikatur) | 1 – beschreiben, deuten, Arten von Leid |
-| Erarbeitung I (AB Leibniz) | 2, 3, 4 – Kernaussage, Zitat, Begründungen |
-| Gelenk (Lissabon 1755) | 5 – Bericht, Aussagenprüfung, Stellungnahme zur Leitfrage |
-| Erarbeitung II (AB Voltaire) | 6, 7, 8 – Kontext, Zitate, Argumentationskette |
-| Sicherung | 9 – Schaubild: beide Positionen im Überblick |
-| Vertiefung (Gottesbild) | 10 – Theodizee-Trilemma, 11 – Ertrag und eigene Stellungnahme |
-| | 12 – Abgabe |
+| Einstieg (Karikatur) | 1 – deuten &middot; 2 – Arten von Leid zuordnen |
+| Erarbeitung I (AB Leibniz) | 3 – Kernaussage &middot; 4 – Zitat prüfen &middot; 5 – Begründungen zuordnen |
+| Gelenk (Lissabon 1755) | 6 – Stellungnahme zur Leitfrage |
+| Erarbeitung II (AB Voltaire) | 7 – Lückentext &middot; 8 – Trost der Philosophen &middot; 9 – Argumentationskette |
+| Sicherung | 10 – Schaubild: beide Positionen im Überblick |
+| Vertiefung (Gottesbild) | 11 – Theodizee-Trilemma &middot; 12 – Ertrag und eigene Stellungnahme |
+| | 13 – Abgabe |
 
 Die Stunde läuft vollständig in der Anwendung; es ist keine mündliche Phase
-und keine Gruppenarbeit nötig. Die Vertiefung führt vom Leid zum
-**Gottesbild**: Lernschritt 10 entfaltet das Theodizee-Trilemma (Gott ist
-allmächtig – Gott ist gut – es gibt sinnloses Leid). Die Schülerinnen und
-Schüler ordnen gängige Antworten danach, welchen der drei Sätze sie preisgeben,
-prüfen, was Leibniz und Voltaire über Gott voraussetzen, entscheiden sich
-begründet für einen Weg und benennen das Gottesbild, das daraus folgt.
-Lernschritt 11 sichert den Ertrag und mündet in die begründete eigene
-Stellungnahme im Anforderungsbereich III.
+und keine Gruppenarbeit nötig. Die Erarbeitung ist bewusst knapp gehalten:
+**Die Lernschritte 1 bis 9 haben je genau eine Aufgabe** und wechseln dabei
+die Methode – deuten, zuordnen, Aussagen prüfen, Position beziehen,
+Lückentext, Argumentationskette sortieren. Das Gewicht der Stunde liegt auf
+dem Schaubild (10) und der Vertiefung (11 und 12).
 
-Die Aufgaben liegen durchgehend im Anforderungsbereich II und III: statt
-Multiple-Choice stehen Zuordnungen, die Prüfung von Aussagen mit
-Begründungspflicht (`trifft zu / muss präzisiert werden / trifft nicht zu`),
-eine Argumentationskette zum Sortieren und Erörterungsaufgaben. Wiedergabe
-wird nur dort verlangt, wo sie eine Deutung vorbereitet.
+Lernschritt 10 stellt beide Sichtweisen gegenüber. Lernschritt 11 führt vom
+Leid zum **Gottesbild**: Er entfaltet das Theodizee-Trilemma (Gott ist
+allmächtig – Gott ist gut – es gibt sinnloses Leid). Die Schülerinnen und
+Schüler ordnen gängige Antworten danach, welchen der drei Sätze sie
+preisgeben, prüfen, was Leibniz und Voltaire über Gott voraussetzen,
+entscheiden sich begründet für einen Weg und benennen das Gottesbild, das
+daraus folgt. Lernschritt 12 sichert den Ertrag und mündet in die begründete
+eigene Stellungnahme im Anforderungsbereich III.
+
+Die Aufgaben liegen im Anforderungsbereich II und III: Zuordnungen, die
+Prüfung von Aussagen mit Begründungspflicht (`trifft zu / muss präzisiert
+werden / trifft nicht zu`), ein Lückentext, eine Argumentationskette zum
+Sortieren und Erörterungsaufgaben. Multiple-Choice kommt nicht vor.
+
+### Aufgabentypen
+
+`text`, `position`, `mc`, `multi`, `auswahl`, `akrostichon`, `zuordnung`,
+`aussagen` sowie zwei neuere Typen:
+
+* **`kette`** – Bausteine in die richtige Reihenfolge bringen. Braucht
+  `items` (Reihenfolge der Liste = Anzeige im Vorrat, also mischen) und
+  `reihenfolge` (die Lösung als Liste der Ids).
+* **`lueckentext`** – Fließtext mit Auswahlfeldern. Braucht `teile`: eine
+  Liste, in der Zeichenketten der Text sind und Objekte
+  `{ id, optionen: [...], loesung: 0 }` eine Lücke.
 
 ## Vor dem ersten Einsatz
 
@@ -42,7 +59,7 @@ wird nur dort verlangt, wo sie eine Deutung vorbereitet.
    zugeklappten Impuls, den die Schülerinnen und Schüler erst öffnen, wenn sie
    bei der Beschreibung oder Deutung nicht weiterkommen — so nimmt sie die
    eigene Deutung nicht vorweg.
-2. **Film (optional).** Lernschritt 5 kommt ohne Film aus; der Bericht trägt
+2. **Film (optional).** Lernschritt 6 kommt ohne Film aus; der Bericht trägt
    die Phase allein. Willst du doch einen Film zeigen, ergänze im Lernschritt
    `gelenk` in `assets/js/seiten.js` wieder ein Feld `link` mit `titel`, `text`,
    `hinweis` und `url` – und prüfe die Adresse vor dem Einsatz.

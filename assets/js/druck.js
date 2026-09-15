@@ -43,6 +43,14 @@
           (drin.length ? drin.map(function (it) { return "  • " + it.text; }).join("\n") : "  —");
       }).join("\n\n") + "</div>";
     }
+    if (a.typ === "lueckentext") {
+      var lv = v || {};
+      return '<div class="antwort">' + a.teile.map(function (t) {
+        if (typeof t === "string") return esc(t);
+        var w = lv[t.id];
+        return " [" + (w === undefined || w === null ? "— offen —" : esc(t.optionen[w])) + "] ";
+      }).join("") + "</div>";
+    }
     if (a.typ === "kette") {
       var kl = Array.isArray(v) ? v : [];
       if (!kl.length) return kasten("");
