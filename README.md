@@ -11,17 +11,28 @@ Abgaben liegen in einem Supabase-Projekt.
 | Einstieg (Karikatur) | 1 – beschreiben, deuten, Arten von Leid |
 | Erarbeitung I (AB Leibniz) | 2, 3, 4 – Kernaussage, Zitat, Begründungen |
 | Sicherung I (Assoziation) | 5 – „GERECHT“ aus Leibniz’ Sicht |
-| Gelenk (Film, Lissabon 1755) | 6 – Film, Bericht, Stellungnahme zur Leitfrage |
+| Gelenk (Lissabon 1755) | 6 – Bericht, Aussagenprüfung, Stellungnahme zur Leitfrage |
 | Erarbeitung II (AB Voltaire) | 7, 8, 9 – Kontext, Zitate, Argumente gegen Leibniz |
 | Sicherung II (Assoziation) | 10 – „GERECHT“ aus Voltaires Sicht |
 | — | 11 – Schaubild: beide Positionen im Überblick |
-| Vertiefung (Debatte) | 12 – Vorbereitung, 13 – Ertrag und eigene Stellungnahme |
+| Vertiefung (Theodizee-Prozess) | 12 – Rollenvorbereitung, 13 – Ertrag und eigene Stellungnahme |
 | | 14 – Abgabe |
 
-Die Debatte selbst läuft weiterhin mündlich in Vierergruppen nach den Regeln
-von *Jugend debattiert*. Lernschritt 12 bereitet den eigenen Auftritt vor,
-Lernschritt 13 hält den Ertrag fest und mündet in eine begründete
-Stellungnahme im Anforderungsbereich III.
+Die Vertiefung ist ein **Theodizee-Prozess**: Angeklagt ist nicht Gott,
+sondern der Satz „Das Leid in der Welt ist Teil einer göttlichen Ordnung und
+hat letztlich einen höheren Sinn.“ In Vierergruppen verhandeln Anklage
+(Position Voltaires), Verteidigung (Position Leibniz’), eine Zeugin oder ein
+Zeuge aus Lissabon und ein Gericht, das ein begründetes Urteil sprechen muss.
+Der Verfahrensablauf steht als Hilfe in Lernschritt 12; dort bereitet jede und
+jeder die eigene Rolle vor (Antrag, Belege, stärkster Einwand, Fragen für die
+Beweisaufnahme). Lernschritt 13 legt die Rolle wieder ab und mündet in eine
+begründete eigene Stellungnahme im Anforderungsbereich III.
+
+Die Aufgaben liegen durchgehend im Anforderungsbereich II und III: statt
+Multiple-Choice stehen Zuordnungen, die Prüfung von Aussagen mit
+Begründungspflicht (`trifft zu / muss präzisiert werden / trifft nicht zu`)
+und Erörterungsaufgaben. Wiedergabe wird nur dort verlangt, wo sie eine
+Deutung vorbereitet.
 
 ## Vor dem ersten Einsatz
 
@@ -33,9 +44,10 @@ Stellungnahme im Anforderungsbereich III.
    zugeklappten Impuls, den die Schülerinnen und Schüler erst öffnen, wenn sie
    bei der Beschreibung oder Deutung nicht weiterkommen — so nimmt sie die
    eigene Deutung nicht vorweg.
-2. **Film prüfen.** Lernschritt 6 verlinkt den Film über das Erdbeben von
-   Lissabon (youtube-nocookie, öffnet in einem neuen Tab). Die Adresse steht in
-   `assets/js/seiten.js` beim Feld `link`.
+2. **Film (optional).** Lernschritt 6 kommt ohne Film aus; der Bericht trägt
+   die Phase allein. Willst du doch einen Film zeigen, ergänze im Lernschritt
+   `gelenk` in `assets/js/seiten.js` wieder ein Feld `link` mit `titel`, `text`,
+   `hinweis` und `url` – und prüfe die Adresse vor dem Einsatz.
 3. **Datenbank.** Diese Einheit schreibt und liest die Kennung `theodizee`.
    Läuft im selben Supabase-Projekt schon eine andere Einheit, genügt einmalig:
 
