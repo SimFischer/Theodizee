@@ -27,7 +27,7 @@ So geht es im Browser:
 4. GitHub zeigt an, dass bestehende Dateien ersetzt werden - das ist so
    gewollt.
 5. Unten eine kurze Commit-Nachricht eintragen, z. B.
-   "Schlanke Fassung: eine Aufgabe je Lernschritt, neue Aufgabentypen".
+   "Schlanke Fassung, Lueckentext mit fuenf Auswahlmoeglichkeiten".
 6. "Commit changes" klicken.
 
 Neu sind die Aufgabentypen "kette" (Argumentationskette sortieren) und

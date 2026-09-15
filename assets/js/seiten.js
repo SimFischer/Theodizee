@@ -175,19 +175,21 @@ window.SEITEN = [
       zusatz: "Tippe auf ein Auswahlfeld und wähle den passenden Ausdruck.",
       teile: [
         "Voltaire war ein französischer Philosoph und Schriftsteller und gilt als einer der Vordenker der ",
-        { id: "L1", optionen: ["Aufklärung", "Romantik", "Reformation"], loesung: 0 },
-        ". In seinen Werken prangerte er vor allem die Missstände des ",
-        { id: "L2", optionen: ["Absolutismus", "Kapitalismus", "Bürgertums"], loesung: 0 },
-        " an; theologisch äußerte er sich häufig ",
-        { id: "L3", optionen: ["kirchenkritisch", "kirchentreu", "gleichgültig"], loesung: 0 },
+        { id: "L1", optionen: ["Scholastik", "Romantik", "Aufklärung", "Gegenreformation", "Klassik"], loesung: 2 },
+        ". In seinen Werken prangerte er die Missstände des Absolutismus und der Feudalherrschaft an; so forderte er die ",
+        { id: "L2", optionen: ["Mündigkeit", "Brüderlichkeit", "Souveränität", "Gleichheit", "Toleranz"], loesung: 3 },
+        " aller Bürgerinnen und Bürger. Theologisch äußerte er sich häufig ",
+        { id: "L3", optionen: ["kirchenkritisch", "kirchentreu", "atheistisch", "gleichgültig", "mystisch"], loesung: 0 },
         ". Seine Einstellung zur Theodizee prägte vor allem ",
-        { id: "L4", optionen: ["das Erdbeben von Lissabon 1755", "ein Gespräch mit Leibniz", "die Französische Revolution"], loesung: 0 },
-        ". Als Reaktion darauf schrieb er das Lehrgedicht über die Katastrophe von Lissabon und den Roman ",
-        { id: "L5", optionen: ["„Candide“", "„Die Theodicee“", "„Emile“"], loesung: 0 },
+        { id: "L4", optionen: ["die Französische Revolution", "ein Briefwechsel mit Leibniz", "das Erdbeben von Lissabon 1755", "die Pest von Marseille 1720", "der Siebenjährige Krieg"], loesung: 2 },
+        ". Als Reaktion darauf schrieb er das ",
+        { id: "L5", optionen: ["Traktat", "Sonett", "Klagelied", "Lehrgedicht", "Epos"], loesung: 3 },
+        " über die Katastrophe von Lissabon sowie den Roman ",
+        { id: "L6", optionen: ["„Zadig oder das Schicksal“", "„Candide oder der Optimismus“", "„Émile oder über die Erziehung“", "„Die Theodicee“", "„Nathan der Weise“"], loesung: 1 },
         "."
       ],
       hinweisLeer: "Es ist noch nicht jede Lücke gefüllt.",
-      hinweisFalsch: "Mindestens eine Lücke passt noch nicht. Der erste und der zweite Absatz des Textes geben alles her." }
+      hinweisFalsch: "Mindestens eine Lücke passt noch nicht. Mehrere Antworten klingen plausibel – nur eine steht so im Text. Lies die beiden Absätze genau." }
   ]
 },
 
