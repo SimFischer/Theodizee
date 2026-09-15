@@ -6,6 +6,9 @@ window.EINHEIT = {
   id: "theodizee",
   speicherSchluessel: "theodizee-leibniz-voltaire.v1",
 
+  /* Vorsilbe der Zwischenstand-Dateien, die die SuS herunterladen */
+  dateiPraefix: "Theodizee",
+
   titel:       "Theodizee: Leibniz und Voltaire",
   untertitel:  "Wie lässt sich das Leid in der Welt mit Gott zusammendenken?",
   kopfMarke:   "Theodizee",

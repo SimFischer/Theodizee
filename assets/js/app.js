@@ -515,16 +515,28 @@
     if (z) z.innerHTML = '<div class="meldung ' + art + '"><p>' + esc(text) + "</p></div>";
   }
 
+  /* Kennung im Zwischenstand: verhindert, dass die Datei einer anderen
+     Lerneinheit versehentlich hier geladen wird. */
+  function paketTyp() {
+    return "lernstand-" + ((window.EINHEIT || {}).id || "einheit");
+  }
+
+  function dateiPraefix() {
+    var e = window.EINHEIT || {};
+    var roh = e.dateiPraefix || e.id || "Lerneinheit";
+    return String(roh).replace(/[^A-Za-zÄÖÜäöüß0-9_-]/g, "_");
+  }
+
   function dateiName() {
     var p = state.person || {};
     var teil = ((p.nachname || "") + "_" + (p.vorname || "")).replace(/[^A-Za-zÄÖÜäöüß0-9_-]/g, "");
     var d = new Date(), z = function (n) { return (n < 10 ? "0" : "") + n; };
-    return "Luther_Zwischenstand" + (teil.length > 1 ? "_" + teil : "") + "_" +
+    return dateiPraefix() + "_Zwischenstand" + (teil.length > 1 ? "_" + teil : "") + "_" +
       d.getFullYear() + "-" + z(d.getMonth() + 1) + "-" + z(d.getDate()) + ".json";
   }
 
   function alsDatei() {
-    var paket = { typ: "luther-zwischenstand", version: 1, gespeichertAm: new Date().toISOString(), stand: state };
+    var paket = { typ: paketTyp(), version: 1, gespeichertAm: new Date().toISOString(), stand: state };
     var blob = new Blob([JSON.stringify(paket, null, 2)], { type: "application/json" });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
@@ -539,8 +551,13 @@
     leser.onload = function () {
       var paket;
       try { paket = JSON.parse(leser.result); } catch (e) { paket = null; }
-      if (!paket || paket.typ !== "luther-zwischenstand" || !paket.stand) {
-        sicherungMeldung("fehler", "Diese Datei ist kein Zwischenstand dieser Lernanwendung.");
+      if (!paket || !paket.stand || String(paket.typ || "").indexOf("lernstand-") !== 0) {
+        sicherungMeldung("fehler", "Diese Datei ist kein Zwischenstand einer Lernanwendung.");
+        return;
+      }
+      if (paket.typ !== paketTyp()) {
+        sicherungMeldung("fehler", "Dieser Zwischenstand gehört zu einer anderen Lerneinheit " +
+          "und lässt sich hier nicht laden.");
         return;
       }
       if (!window.confirm("Zwischenstand vom " +
