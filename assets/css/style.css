@@ -345,6 +345,17 @@ label.feld > span{ display:block; margin-bottom:.25rem; font-weight:600; color:v
 
 
 /* ---------- Akrostichon ---------- */
+/* --- Aufgabe, die beim Abschliessen falsch war --------------------- */
+.karte.auftrag.falsch{ border-left-color:var(--rot); background:#fffaf9; }
+.karte.auftrag.falsch .auftrag-marke{ color:var(--rot); background:var(--rot-zart); }
+.aufgabe-fehler{
+  margin-top:.8rem; padding:.6rem .75rem;
+  border-left:3px solid var(--rot); background:var(--rot-zart);
+  border-radius:0 var(--r-s) var(--r-s) 0;
+  font-size:.92rem; color:#5f2723;
+}
+.aufgabe-fehler strong{ display:block; margin-bottom:.15rem; }
+
 /* --- Lückentext ----------------------------------------------------- */
 .lueckentext{ line-height:2.3; margin:.7rem 0 0; }
 .luecke{

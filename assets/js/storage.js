@@ -13,6 +13,7 @@
       aktuelleSeite: 0,
       freigeschaltet: [0],
       antworten: {},     // Aufgaben-Id -> Antwortwert
+      versuche: {},      // Aufgaben-Id -> Zahl der Fehlversuche (fuer gestufte Tipps)
       markierungen: {},  // Abschnitts-Id -> Liste von Markierungen
       tafelbild: {},     // Feld-Id -> Baustein-Id
       person: { vorname: "", nachname: "", kurs: "" },

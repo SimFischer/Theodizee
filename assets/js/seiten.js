@@ -73,7 +73,12 @@ window.SEITEN = [
         { id: "i2", text: "Plünderer nutzen die zerstörte Stadt aus", korb: "b" }
       ],
       hinweisLeer: "Es liegen noch Fälle im Vorrat.",
-      hinweisFalsch: "Eine Zuordnung passt noch nicht. Frage jeweils: Wer oder was ist die Ursache – die Natur, ein menschlicher Wille oder die Endlichkeit selbst?" }
+      hinweisFalsch: "Eine Zuordnung passt noch nicht. Frage jeweils: Wer oder was ist die Ursache – die Natur, ein menschlicher Wille oder die Endlichkeit selbst?",
+      tipps: [
+        "Geh die Fälle einzeln durch und frage: Hätte ein Mensch das verhindern können, wenn er anders gehandelt hätte? Dann ist es ein moralisches Übel.",
+        "Zwei Fälle sind knifflig: Dass niemand die Folgen seines Handelns überblickt, liegt nicht an einem bösen Willen, sondern an der Begrenztheit des Menschen – das ist metaphysisch. Plünderer dagegen entscheiden sich.",
+        "Zur Kontrolle: Flutwelle und Seuche sind physisch (Natur), Plünderer und zurückgehaltene Hilfsgüter moralisch (Wille), Altern und begrenzter Überblick metaphysisch (Endlichkeit)."
+      ] }
   ]
 },
 
@@ -116,7 +121,13 @@ window.SEITEN = [
           rueck: "Genau das sagt der Bedingungssatz des Zitats. Schöpfung setzt für Leibniz einen vernünftigen Wahlgrund voraus." }
       ],
       hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
-      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." }
+      hinweisFalsch: "Mindestens eine Einordnung trägt noch nicht. Die Rückmeldung unter der Aussage sagt dir, woran es liegt.",
+      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen.",
+      tipps: [
+        "Lies den Schluss des Zitats noch einmal: „weil er nicht anders, als nach der höchsten Vernunft handelt“. Ist das ein Zwang von außen?",
+        "Achte auf den Unterschied zwischen „Gott muss, weil ihn etwas dazu zwingt“ und „Gott handelt so, weil es seinem Wesen entspricht“. Nur eines der beiden steht im Text.",
+        "Zur Kontrolle: Die erste Aussage muss präzisiert werden (kein äußerer Zwang, sondern Gottes eigene Vollkommenheit), die zweite trifft zu (der Bedingungssatz sagt genau das)."
+      ] }
   ]
 },
 
@@ -142,7 +153,12 @@ window.SEITEN = [
         { id: "i2", text: "Menschen können nicht sein wie Gott", korb: "a" }
       ],
       hinweisLeer: "Es liegen noch Aussagen im Vorrat.",
-      hinweisFalsch: "Eine Zuordnung passt noch nicht. Der Text nennt für jedes Übel ausdrücklich seinen Grund." }
+      hinweisFalsch: "Eine Zuordnung passt noch nicht. Der Text nennt für jedes Übel ausdrücklich seinen Grund.",
+      tipps: [
+        "Der Text nennt drei Gründe nacheinander: Geschöpflichkeit, Freiheit, begrenzte Sicht. Suche im Absatz nach diesen drei Wörtern und sieh nach, was jeweils davor oder danach steht.",
+        "„Der Anschein, die Welt hätte besser sein können“ und „die Ordnung des Ganzen nicht erkennen“ gehören zusammen – beides sagt etwas über uns, nicht über die Welt.",
+        "Zur Kontrolle: Geschöpflichkeit = Leiden/Begrenztheit und „nicht sein wie Gott“; Freiheit = moralische Übel; begrenzte Sicht = der Anschein und das Nicht-Erkennen des Ganzen."
+      ] }
   ]
 },
 
@@ -189,7 +205,12 @@ window.SEITEN = [
         "."
       ],
       hinweisLeer: "Es ist noch nicht jede Lücke gefüllt.",
-      hinweisFalsch: "Mindestens eine Lücke passt noch nicht. Mehrere Antworten klingen plausibel – nur eine steht so im Text. Lies die beiden Absätze genau." }
+      hinweisFalsch: "Mindestens eine Lücke passt noch nicht. Mehrere Antworten klingen plausibel – nur eine steht so im Text. Lies die beiden Absätze genau.",
+      tipps: [
+        "Alle sechs Antworten stehen wörtlich im Text (Z. 79–92). Geh Satz für Satz vor und vergleiche, statt nach Gefühl zu wählen.",
+        "Zwei Stolperstellen: Voltaire starb 1778, die Französische Revolution begann 1789 – sie kann ihn nicht geprägt haben. Und „kirchenkritisch“ ist etwas anderes als „atheistisch“; im Text steht nur das eine.",
+        "Noch eine Stolperstelle: Der Text nennt ausdrücklich die Gattung des Textes über Lissabon, und er nennt genau einen Roman. „Zadig“ stammt zwar auch von Voltaire, steht hier aber nicht."
+      ] }
   ]
 },
 
@@ -231,7 +252,12 @@ window.SEITEN = [
       ],
       reihenfolge: ["kt1", "kt2", "kt3", "kt4", "kt5"],
       hinweisLeer: "Es liegen noch Bausteine im Vorrat. Alle fünf gehören in die Kette.",
-      hinweisFalsch: "Die Reihenfolge stimmt noch nicht. Der Gedankengang beginnt bei dem, was die anderen behaupten, und endet bei dem, was Voltaire daraus folgert." }
+      hinweisFalsch: "Die Reihenfolge stimmt noch nicht. Der Gedankengang beginnt bei dem, was die anderen behaupten, und endet bei dem, was Voltaire daraus folgert.",
+      tipps: [
+        "Frage von hinten: Der letzte Schritt zieht eine Folgerung – erkennbar am „Also“. Was muss davor gesagt sein, damit dieses „Also“ trägt?",
+        "Der Mittelteil hängt an der Hoffnung: Erst wird gesagt, dass nur sie bleibt; dann, dass gerade die „beste aller möglichen Welten“ sie unmöglich macht. In dieser Folge, nicht umgekehrt.",
+        "Zur Kontrolle: 1. die Deutung der Philosophen, 2. Voltaires Vorwurf des Zynismus, 3. was bleibt: die Hoffnung, 4. warum der Optimismus sie ausschließt, 5. die Folgerung daraus."
+      ] }
   ]
 },
 
@@ -271,7 +297,12 @@ window.SEITEN = [
         { id: "t4", text: "Gott hat die Welt geschaffen und überlässt sie seither sich selbst", korb: "b" }
       ],
       hinweisLeer: "Es liegen noch Antworten im Vorrat.",
-      hinweisFalsch: "Eine Zuordnung passt noch nicht. Prüfe: Wird hier Gottes Können eingeschränkt, sein Wollen – oder wird das Leid umgedeutet?" },
+      hinweisFalsch: "Eine Zuordnung passt noch nicht. Prüfe: Wird hier Gottes Können eingeschränkt, sein Wollen – oder wird das Leid umgedeutet?",
+      tipps: [
+        "Drei Fragen helfen: Kann Gott hier nicht (Allmacht)? Will Gott hier nicht (Güte)? Oder ist das Leid gar nicht wirklich sinnlos (dritter Satz)?",
+        "„Gott hat sich zurückgenommen“ und „Gott leidet mit, kann aber nicht verhindern“ sagen beide: Er greift nicht ein, weil er es nicht kann oder nicht mehr kann – das trifft die Allmacht, nicht die Güte.",
+        "Zur Kontrolle: Mitleidender und zurückgenommener Gott = Allmacht; Strafe und sich selbst überlassene Welt = Güte; verborgene Ordnung und Preis der Freiheit = Sinnlosigkeit wird bestritten."
+      ] },
 
     { id: "p2", typ: "aussagen",
       frage: "Prüfe, was die beiden Positionen über Gott voraussetzen.",
@@ -292,7 +323,14 @@ window.SEITEN = [
           rueck: "Das hängt daran, was „Gott“ heißen soll. Wer die Allmacht zur Grundbedingung macht, muss zustimmen; wer Gott von der Liebe her denkt, kann widersprechen. Genau hier scheiden sich die Gottesbilder." }
       ],
       hinweisLeer: "Mindestens eine Aussage ist noch nicht eingeordnet.",
-      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen." },
+      hinweisFalsch: "Mindestens eine Einordnung trägt noch nicht. Die Rückmeldung unter der Aussage sagt dir, woran es liegt.",
+      hinweisBegruendung: "Zu mindestens einer Aussage fehlt noch eine Begründung von mindestens 60 Zeichen.",
+      stelle: "v3",
+      tipps: [
+        "Prüfe bei jeder Aussage zuerst, ob sie überhaupt behauptet, was der Text sagt – und dann, ob sie zu weit geht.",
+        "Zwei Aussagen sind weder ganz richtig noch ganz falsch: Der Freiheitsgedanke erklärt das moralische Übel, aber nicht das Erdbeben. Und ob ein mitleidender Gott „kein Gott mehr“ ist, hängt davon ab, was man unter Gott versteht.",
+        "Zur Kontrolle: Die erste Aussage trifft zu, die zweite trifft nicht zu (Voltaire bestreitet nicht Gott, sondern eine Rede von ihm), die dritte und vierte müssen präzisiert werden."
+      ] },
 
     { id: "p3", typ: "position",
       frage: "An welchem der drei Sätze würdest du am ehesten etwas verändern?",

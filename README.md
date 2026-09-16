@@ -37,6 +37,25 @@ Prüfung von Aussagen mit Begründungspflicht (`trifft zu / muss präzisiert
 werden / trifft nicht zu`), ein Lückentext, eine Argumentationskette zum
 Sortieren und Erörterungsaufgaben. Multiple-Choice kommt nicht vor.
 
+### Rückmeldung und Sperren
+
+* **Nur geschlossene Aufgaben sperren die Seite.** Auswahl, Zuordnung,
+  Lückentext, Argumentationskette, die Einordnung bei `aussagen` und die
+  Positionswahl müssen stimmen, bevor es weitergeht. **Freitexte halten
+  niemanden auf** – zu kurze oder fehlende Texte erscheinen nur als Hinweis
+  und tauchen vor der Abgabe unter „Es fehlen noch Pflichtbereiche“ auf.
+* **Falsche Aufgaben werden markiert**: rote Kante, roter Kasten mit dem
+  Hinweis direkt an der Aufgabe. Die Markierung verschwindet, sobald die
+  Antwort geändert wird.
+* **Schnellsprung zum Text**: Im Fehlerkasten steht ein Knopf zur
+  zugehörigen Textstelle. Standard ist der Abschnitt der Seite; mit dem Feld
+  `stelle: "v3"` lässt sich ein anderer Abschnitt angeben.
+* **Gestufte Tipps**: Jede Aufgabe kann `tipps: [ ... ]` mitbringen. Beim
+  ersten Fehlversuch erscheint der normale Hinweis, ab dem zweiten die
+  Stufen aus `tipps` – üblicherweise erst ein Denkanstoß, dann die
+  Stolperstellen, zuletzt die Lösung zur Selbstkontrolle. Gezählt wird pro
+  Aufgabe in `state.versuche`; der Zähler wird mitgespeichert.
+
 ### Aufgabentypen
 
 `text`, `position`, `mc`, `multi`, `auswahl`, `akrostichon`, `zuordnung`,

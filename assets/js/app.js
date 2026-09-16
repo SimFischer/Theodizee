@@ -69,7 +69,23 @@
   /* ---------------- Hilfsfunktionen ---------------- */
   function speichern() { window.Speicher.sichern(state); }
   function ant(id) { return state.antworten[id]; }
-  function setAnt(id, wert) { state.antworten[id] = wert; speichern(); }
+
+  /* Aufgaben, die beim letzten Abschliessen falsch waren. Nur fuer die
+     Anzeige - wird nicht gespeichert und verschwindet, sobald jemand die
+     Antwort aendert. */
+  var fehlerAn = {};
+
+  function markeWeg(id) {
+    if (!fehlerAn[id]) return;
+    delete fehlerAn[id];
+    var k = document.querySelector('[data-aufgabe="' + id + '"]');
+    if (!k) return;
+    k.classList.remove("falsch");
+    var box = k.querySelector(".aufgabe-fehler");
+    if (box) box.remove();
+  }
+
+  function setAnt(id, wert) { state.antworten[id] = wert; markeWeg(id); speichern(); }
   function frei(i) { return vorschau || state.freigeschaltet.indexOf(i) >= 0; }
   function laenge(s) { return (s || "").trim().replace(/\s+/g, " ").length; }
 
@@ -78,66 +94,89 @@
     return -1;
   }
 
-  /* ---------------- Prüfung ---------------- */
+  /* ---------------- Prüfung ----------------
+     Jede Rückmeldung ist ein Objekt:
+       { id: Aufgaben-Id, text: Meldung, sperrt: true|false }
+     "sperrt" heisst: Die Seite laesst sich nicht abschliessen. Das gilt nur
+     fuer geschlossene Aufgaben (Auswahl, Zuordnung, Kette, Lueckentext,
+     Einordnung von Aussagen). Freitexte melden sich nur als Hinweis und
+     halten niemanden auf.
+     ------------------------------------------------------------------ */
+
+  /* Gestufte Tipps: je oefter eine Aufgabe falsch war, desto deutlicher.
+     Die Stufen stehen in der Aufgabe unter "tipps"; fehlen sie, wird der
+     normale Hinweis wiederholt. */
+  function versuche(id) { return (state.versuche || {})[id] || 0; }
+
+  function tippText(a, grundtext) {
+    var stufe = versuche(a.id);
+    if (a.tipps && a.tipps.length && stufe > 1) {
+      return a.tipps[Math.min(stufe - 2, a.tipps.length - 1)];
+    }
+    return grundtext;
+  }
+
   function pruefeAufgabe(a) {
     var f = [], v = ant(a.id), i;
+    function sperr(t) { if (t) f.push({ id: a.id, text: t, sperrt: true }); }
+    function tipp(t) { if (t) f.push({ id: a.id, text: t, sperrt: false }); }
 
     if (a.typ === "mc") {
       /* freieWahl: Auswahl ohne richtige Loesung, z. B. eine zugewiesene Rolle.
          Dann genuegt es, dass ueberhaupt etwas gewaehlt wurde. */
-      if (v === undefined || v === null) f.push("„" + kurzFrage(a) + "“ ist noch nicht beantwortet.");
-      else if (!a.freieWahl && v !== a.loesung) f.push(a.hinweis);
+      if (v === undefined || v === null) sperr("„" + kurzFrage(a) + "“ ist noch nicht beantwortet.");
+      else if (!a.freieWahl && v !== a.loesung) sperr(tippText(a, a.hinweis));
     }
 
     else if (a.typ === "multi") {
-      if (!Array.isArray(v) || !v.length) f.push("„" + kurzFrage(a) + "“ ist noch nicht beantwortet.");
+      if (!Array.isArray(v) || !v.length) sperr("„" + kurzFrage(a) + "“ ist noch nicht beantwortet.");
       else {
         var soll = a.loesung.slice().sort().join(","), ist = v.slice().sort().join(",");
-        if (soll !== ist) f.push(a.hinweis);
+        if (soll !== ist) sperr(tippText(a, a.hinweis));
       }
     }
 
     else if (a.typ === "text") {
-      if (laenge(v) < (a.minLen || 1)) f.push(a.hinweisLeer);
+      if (laenge(v) < (a.minLen || 1)) tipp(a.hinweisLeer);
       else if (a.schluessel) {
         var t = (v || "").toLowerCase();
         for (i = 0; i < a.schluessel.length; i++) {
           var treffer = a.schluessel[i].some(function (w) { return t.indexOf(w) >= 0; });
-          if (!treffer) { f.push(a.hinweisSchluessel); break; }
+          if (!treffer) { tipp(a.hinweisSchluessel); break; }
         }
       }
     }
 
     else if (a.typ === "position") {
       v = v || {};
-      if (v.wahl === undefined || v.wahl === null) f.push(a.hinweisWahl);
-      if (laenge(v.text) < (a.minLen || 1)) f.push(a.hinweisText);
+      if (v.wahl === undefined || v.wahl === null) sperr(a.hinweisWahl);
+      if (laenge(v.text) < (a.minLen || 1)) tipp(a.hinweisText);
     }
 
     else if (a.typ === "auswahl") {
       v = v || {};
-      if (!v.thema || !String(v.thema).trim()) f.push(a.hinweis);
+      if (!v.thema || !String(v.thema).trim()) sperr(a.hinweis);
     }
 
     else if (a.typ === "zuordnung") {
       v = v || {};
       var offen = a.items.filter(function (it) { return !v[it.id]; });
-      if (offen.length) f.push(a.hinweisLeer);
-      else if (a.items.some(function (it) { return v[it.id] !== it.korb; })) f.push(a.hinweisFalsch);
+      if (offen.length) sperr(a.hinweisLeer);
+      else if (a.items.some(function (it) { return v[it.id] !== it.korb; })) sperr(tippText(a, a.hinweisFalsch));
     }
 
     else if (a.typ === "kette") {
       var kl = Array.isArray(v) ? v : [];
-      if (kl.length < a.items.length) f.push(a.hinweisLeer);
-      else if (kl.join(",") !== a.reihenfolge.join(",")) f.push(a.hinweisFalsch);
+      if (kl.length < a.items.length) sperr(a.hinweisLeer);
+      else if (kl.join(",") !== a.reihenfolge.join(",")) sperr(tippText(a, a.hinweisFalsch));
     }
 
     else if (a.typ === "lueckentext") {
       var lv = v || {};
       var luecken = a.teile.filter(function (t) { return typeof t !== "string"; });
       var offenL = luecken.filter(function (l) { return lv[l.id] === undefined || lv[l.id] === null; });
-      if (offenL.length) f.push(a.hinweisLeer);
-      else if (luecken.some(function (l) { return lv[l.id] !== l.loesung; })) f.push(a.hinweisFalsch);
+      if (offenL.length) sperr(a.hinweisLeer);
+      else if (luecken.some(function (l) { return lv[l.id] !== l.loesung; })) sperr(tippText(a, a.hinweisFalsch));
     }
 
     else if (a.typ === "akrostichon") {
@@ -149,11 +188,11 @@
         else if (wert.toLowerCase().indexOf(bu.toLowerCase()) < 0) falscheA.push(bu);
       });
       if (offenA.length) {
-        f.push(a.hinweisLeer || "Zu " + offenA.length +
+        tipp(a.hinweisLeer || "Zu " + offenA.length +
           (offenA.length === 1 ? " Buchstaben fehlt noch ein Begriff." : " Buchstaben fehlen noch Begriffe."));
       }
       if (falscheA.length) {
-        f.push(a.hinweisBuchstabe || "Bei „" + falscheA.join("“, „") +
+        tipp(a.hinweisBuchstabe || "Bei „" + falscheA.join("“, „") +
           "“ kommt der Buchstabe im Begriff noch nicht vor.");
       }
     }
@@ -161,14 +200,18 @@
     else if (a.typ === "aussagen") {
       v = v || {};
       var ohne = a.items.filter(function (it) { return !v[it.id] || v[it.id].kat === undefined || v[it.id].kat === null; });
-      if (ohne.length) f.push(a.hinweisLeer);
+      if (ohne.length) sperr(a.hinweisLeer);
+      else if (a.items.some(function (it) { return v[it.id].kat !== it.loesung; })) {
+        sperr(tippText(a, a.hinweisFalsch ||
+          "Mindestens eine Einordnung trägt noch nicht. Die Rückmeldung unter der Aussage sagt dir, woran es liegt."));
+      }
       var ohneB = a.items.filter(function (it) {
         return it.begruendung && laenge((v[it.id] || {}).text) < 60;
       });
-      if (ohneB.length) f.push(a.hinweisBegruendung);
+      if (ohneB.length) tipp(a.hinweisBegruendung);
     }
 
-    return f.filter(Boolean);
+    return f.filter(function (x) { return x && x.text; });
   }
 
   function kurzFrage(a) {
@@ -178,9 +221,17 @@
 
   function pruefeSeite(i) {
     var s = SEITEN[i], f = [];
-    if (s.tafel) return window.Tafel.pruefen(state);
+    if (s.tafel) {
+      return (window.Tafel.pruefen(state) || []).map(function (t) {
+        return { id: "tafel", text: t, sperrt: true };
+      });
+    }
     s.aufgaben.forEach(function (a) { f = f.concat(pruefeAufgabe(a)); });
     return f;
+  }
+
+  function sperrende(i) {
+    return pruefeSeite(i).filter(function (x) { return x.sperrt; });
   }
 
   function seiteFertig(i) { return pruefeSeite(i).length === 0; }
@@ -273,7 +324,8 @@
   /* ---------------- Aufgaben zeichnen ---------------- */
   function htmlAufgabe(a) {
     var v = ant(a.id), h = "";
-    h += '<section class="karte auftrag" data-aufgabe="' + a.id + '">';
+    h += '<section class="karte auftrag' + (fehlerAn[a.id] ? " falsch" : "") +
+      '" data-aufgabe="' + a.id + '">';
     h += '<span class="auftrag-marke">Arbeitsauftrag</span>';
     h += '<p class="frage">' + esc(a.frage) + "</p>";
     if (a.zusatz) h += '<p class="zusatz">' + esc(a.zusatz) + "</p>";
@@ -420,8 +472,26 @@
       }).join("");
     }
 
+    h += fehlerHtml(a);
     h += "</section>";
     return h;
+  }
+
+  /* Rueckmeldung an einer Aufgabe, die beim Abschliessen falsch war:
+     gestufter Tipp und - wenn es einen Textabschnitt dazu gibt - ein
+     Schnellsprung dorthin. */
+  function fehlerHtml(a) {
+    var e = fehlerAn[a.id];
+    if (!e) return "";
+    var stufe = versuche(a.id);
+    var titel = stufe >= 3 ? "Noch einmal in Ruhe" : stufe === 2 ? "Fast - sieh noch einmal genauer hin" : "Das stimmt noch nicht";
+    var abId = a.stelle || (SEITEN[aktiveSeite] || {}).abschnitt;
+    var ab = abId ? window.QUELLE.sections[abId] : null;
+    return '<div class="aufgabe-fehler"><strong>' + esc(titel) + "</strong> " + esc(e.text) +
+      (ab ? '<div class="knopfzeile" style="margin:.55rem 0 0">' +
+        '<button type="button" class="knopf stumm klein" data-zumtext="' + esc(abId) +
+        '">Zur Textstelle: ' + esc(ab.titel) + " (Z. " + ab.von + "–" + ab.bis + ")</button></div>" : "") +
+      "</div>";
   }
 
   /* Bild einer Seite. Fehlt die Datei, erscheint ein Hinweis statt eines
@@ -712,6 +782,15 @@
       }
       if (ev.target.closest("[data-reset]")) { zuruecksetzen(); return; }
 
+      /* Schnellsprung aus einer Fehlermeldung in den Textabschnitt */
+      var zt = ev.target.closest("[data-zumtext]");
+      if (zt) {
+        aktuellerAbschnitt = zt.dataset.zumtext;
+        zeichneLeser({ abschnitt: aktuellerAbschnitt });
+        if (elLeser) elLeser.scrollIntoView({ block: "start", behavior: "smooth" });
+        return;
+      }
+
       /* Argumentationskette: anhängen, verschieben, zurücklegen */
       var kAdd = ev.target.closest("[data-kette-add]");
       if (kAdd) {
@@ -865,6 +944,14 @@
     alt.replaceWith(huelle.firstChild);
   }
 
+  /* Nach dem Hochzaehlen des Fehlerzaehlers den passenden Tipp holen. */
+  function tippTextFuer(id, grundtext) {
+    var s = SEITEN[aktiveSeite], treffer = null;
+    (s.aufgaben || []).forEach(function (a) { if (a.id === id) treffer = a; });
+    if (!treffer) return grundtext;
+    return tippText(treffer, grundtext);
+  }
+
   function melde(liste, art) {
     if (!elMeldung) return;
     if (!liste || !liste.length) { elMeldung.innerHTML = ""; return; }
@@ -877,8 +964,39 @@
   }
 
   function weiter() {
-    var f = pruefeSeite(aktiveSeite);
-    if (f.length) { melde(f, "fehler"); zeichneKopf(); return; }
+    var f = sperrende(aktiveSeite);
+    if (f.length) {
+      if (!state.versuche) state.versuche = {};
+      var neuMarkiert = {};
+      f.forEach(function (x) {
+        if (!x.id || x.id === "tafel") return;
+        state.versuche[x.id] = (state.versuche[x.id] || 0) + 1;
+        neuMarkiert[x.id] = x;
+      });
+      /* Erst zaehlen, dann markieren - so greift die naechste Tippstufe sofort. */
+      Object.keys(fehlerAn).forEach(function (id) { if (!neuMarkiert[id]) markeWeg(id); });
+      Object.keys(neuMarkiert).forEach(function (id) {
+        fehlerAn[id] = neuMarkiert[id];
+        fehlerAn[id].text = tippTextFuer(id, neuMarkiert[id].text);
+        zeichneAufgabeNeu(id);
+      });
+      speichern();
+      /* Der eigentliche Tipp steht an der Aufgabe. Unten genuegt ein Verweis -
+         ausser bei Meldungen ohne Aufgabe, etwa vom Tafelbild. */
+      var ohneAufgabe = f.filter(function (x) { return !x.id || x.id === "tafel"; });
+      var anzahl = Object.keys(neuMarkiert).length;
+      var meldungen = ohneAufgabe.map(function (x) { return x.text; });
+      if (anzahl) {
+        meldungen.unshift(anzahl === 1
+          ? "Eine Aufgabe stimmt noch nicht – sie ist rot markiert. Der Hinweis steht direkt darunter."
+          : anzahl + " Aufgaben stimmen noch nicht – sie sind rot markiert. Die Hinweise stehen jeweils darunter.");
+      }
+      melde(meldungen, "fehler");
+      var erste = document.querySelector(".auftrag.falsch");
+      if (erste) erste.scrollIntoView({ block: "center", behavior: "smooth" });
+      zeichneKopf();
+      return;
+    }
     var naechste = aktiveSeite + 1;
     if (naechste >= SEITEN.length) return;
     if (!frei(naechste)) state.freigeschaltet.push(naechste);

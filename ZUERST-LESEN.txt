@@ -14,6 +14,7 @@ SimFischer/Theodizee. Die Ordnerstruktur muss erhalten bleiben:
   assets/js/app.js
   assets/js/druck.js
   assets/js/lehrer.js
+  assets/js/storage.js
 
 So geht es im Browser:
 
@@ -27,13 +28,14 @@ So geht es im Browser:
 4. GitHub zeigt an, dass bestehende Dateien ersetzt werden - das ist so
    gewollt.
 5. Unten eine kurze Commit-Nachricht eintragen, z. B.
-   "Schlanke Fassung, Lueckentext mit fuenf Auswahlmoeglichkeiten".
+   "Fehler markieren, gestufte Tipps, Freitexte sperren nicht mehr".
 6. "Commit changes" klicken.
 
-Neu sind die Aufgabentypen "kette" (Argumentationskette sortieren) und
-"lueckentext" (Fliesstext mit Auswahlfeldern). Beide stecken in app.js,
-style.css, druck.js und lehrer.js - deshalb muessen diese vier Dateien
-mit hochgeladen werden.
+Neu in dieser Fassung:
+- falsche Aufgaben werden rot markiert, der Hinweis steht daran
+- Schnellsprung aus der Fehlermeldung in die passende Textstelle
+- staerkere Tipps, je oefter dieselbe Aufgabe falsch war
+- nur geschlossene Aufgaben sperren die Seite; Freitexte nicht mehr
 
 Die ?v=-Nummern in index.html und lehrer.html sind bereits erhoeht, die
 iPads holen sich die neuen Dateien also von selbst.
